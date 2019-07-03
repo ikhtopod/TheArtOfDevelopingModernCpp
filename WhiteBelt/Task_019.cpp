@@ -28,7 +28,6 @@ int main() {
 		if (operation == NEXT) {
 			prevMonth = currentMonth++;
 			if (currentMonth > 11) currentMonth = 0;
-			if (prevMonth == currentMonth) continue;
 
 			for (int i = MONTHS[currentMonth] + 1; i <= MONTHS[prevMonth]; ++i) {
 				toDoList[MONTHS[currentMonth]].insert(
