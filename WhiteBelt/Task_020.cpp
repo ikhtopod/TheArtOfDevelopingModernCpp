@@ -4,11 +4,12 @@
 #include <map>
 
 std::map<char, int> BuildCharCounters(const std::string& word) {
-	std::map<char, int> m {};
+	std::map<char, int> counter {};
 
-	for (const auto& w : word) m[w]++;
+	for (const auto& w : word)
+		++counter[w];
 
-	return m;
+	return counter;
 }
 
 bool IsAnagram(const std::string& first, const std::string& second) {
@@ -19,15 +20,10 @@ int main() {
 	int n = 0;
 	std::cin >> n;
 
-	std::vector<std::string> result {};
 	for (int i = 0; i < n; ++i) {
 		std::string first, second;
 		std::cin >> first >> second;
-		result.push_back(IsAnagram(first, second) ? "YES" : "NO");
-	}
-
-	for (const auto& r : result) {
-		std::cout << r << std::endl;
+		std::cout << (IsAnagram(first, second) ? "YES" : "NO") << std::endl;
 	}
 
 	return 0;
