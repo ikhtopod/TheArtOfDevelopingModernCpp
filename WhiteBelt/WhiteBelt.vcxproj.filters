@@ -135,5 +135,8 @@
     <ClCompile Include="Task_034.cpp">
       <Filter>Исходные файлы\Week3</Filter>
     </ClCompile>
+    <ClCompile Include="Task_035.cpp">
+      <Filter>Исходные файлы\Week3</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>
