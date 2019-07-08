@@ -11,7 +11,7 @@
     </Filter>
     <Filter Include="Файлы ресурсов">
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
-      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms;txt</Extensions>
     </Filter>
     <Filter Include="Исходные файлы\Week1">
       <UniqueIdentifier>{b112b8a5-281d-42d8-a113-0ee316029d6b}</UniqueIdentifier>
@@ -153,5 +153,13 @@
     <ClCompile Include="Task_038.cpp">
       <Filter>Исходные файлы\Week4</Filter>
     </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="hello.txt">
+      <Filter>Файлы ресурсов</Filter>
+    </Text>
+    <Text Include="hello_out.txt">
+      <Filter>Файлы ресурсов</Filter>
+    </Text>
   </ItemGroup>
 </Project>
