@@ -2,7 +2,7 @@
 #include <fstream>
 #include <string>
 
-int ma1in() {
+int main() {
 	std::string filename { "input.txt" };
 
 	std::ifstream infile { filename };
