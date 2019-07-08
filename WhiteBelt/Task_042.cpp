@@ -36,20 +36,15 @@ int main() {
 		int num = 0;
 
 		std::cin >> cmd >> num;
+		num--;
 
-		if (num > 0 && num <= 10'000) {
-			num--;
-
-			if (cmd == "name") {
-				std::cout << students[num].name.first << " " <<
-					students[num].name.last << std::endl;
-			} else if (cmd == "date") {
-				std::cout << students[num].date.day << "." <<
-					students[num].date.month << "." <<
-					students[num].date.year << std::endl;
-			} else {
-				std::cout << "bad request" << std::endl;
-			}//fi
+		if (cmd == "name" && num >= 0 && num < n) {
+			std::cout << students[num].name.first << " " <<
+				students[num].name.last << std::endl;
+		} else if (cmd == "date" && num >= 0 && num < n) {
+			std::cout << students[num].date.day << "." <<
+				students[num].date.month << "." <<
+				students[num].date.year << std::endl;
 		} else {
 			std::cout << "bad request" << std::endl;
 		}//fi
