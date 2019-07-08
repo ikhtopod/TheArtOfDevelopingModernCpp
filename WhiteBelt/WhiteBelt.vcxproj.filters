@@ -168,6 +168,21 @@
     <ClCompile Include="Task_042.cpp">
       <Filter>Исходные файлы\Week4</Filter>
     </ClCompile>
+    <ClCompile Include="Task_043_1.cpp">
+      <Filter>Исходные файлы\Week4</Filter>
+    </ClCompile>
+    <ClCompile Include="Task_043_2.cpp">
+      <Filter>Исходные файлы\Week4</Filter>
+    </ClCompile>
+    <ClCompile Include="Task_043_3.cpp">
+      <Filter>Исходные файлы\Week4</Filter>
+    </ClCompile>
+    <ClCompile Include="Task_043_4.cpp">
+      <Filter>Исходные файлы\Week4</Filter>
+    </ClCompile>
+    <ClCompile Include="Task_043_5.cpp">
+      <Filter>Исходные файлы\Week4</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Text Include="hello.txt">
