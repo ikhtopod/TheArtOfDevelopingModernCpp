@@ -244,7 +244,10 @@
     <ClCompile Include="Task_039_2.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="Task_040.cpp" />
+    <ClCompile Include="Task_040.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="Task_041.cpp" />
     <ClCompile Include="Week1.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
     </ClCompile>
@@ -262,6 +265,7 @@
     <Text Include="hello.txt" />
     <Text Include="hello_out.txt" />
     <Text Include="input.txt" />
+    <Text Include="output.txt" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="resource.h" />
