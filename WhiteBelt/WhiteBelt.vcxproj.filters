@@ -192,6 +192,9 @@
     <ClCompile Include="Task_046.cpp">
       <Filter>Исходные файлы\Week4</Filter>
     </ClCompile>
+    <ClCompile Include="Task_047.cpp">
+      <Filter>Исходные файлы\Week4</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Text Include="hello.txt">
