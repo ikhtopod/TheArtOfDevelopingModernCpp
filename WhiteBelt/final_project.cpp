@@ -53,6 +53,15 @@ public:
 
 };
 
+class DateException : public std::exception {
+public:
+	explicit DateException() : DateException("") {}
+	explicit DateException(std::string message) :
+		DateException(message.c_str()) {}
+	explicit DateException(const char* const message) :
+		std::exception(message) {}
+};
+
 class Date {
 private:
 	int m_day {};
@@ -388,6 +397,8 @@ int main() {
 		try {
 			ch.handle(command)->run(db);
 		} catch (OperationException& e) {
+			std::cout << e.what() << std::endl;
+		} catch (DateException& e) {
 			std::cout << e.what() << std::endl;
 		} catch (...) {}
 	}
