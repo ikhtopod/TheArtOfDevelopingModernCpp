@@ -91,41 +91,6 @@ public:
 
 };
 
-class _Exception {
-protected:
-	std::string m_message {};
-
-public:
-	explicit _Exception() : _Exception("") {}
-	explicit _Exception(std::string message)
-		: m_message(message) {}
-
-	virtual std::string what() const {
-		return m_message;
-	}
-};
-
-class DateException : public _Exception {
-public:
-	explicit DateException() : _Exception() {}
-	explicit DateException(std::string message) :
-		_Exception(message) {}
-};
-
-class OperationException : public _Exception {
-public:
-	explicit OperationException() : _Exception() {}
-	explicit OperationException(std::string message) :
-		_Exception(message) {}
-};
-
-class CommandHandlerException : public _Exception {
-public:
-	explicit CommandHandlerException() : _Exception() {}
-	explicit CommandHandlerException(std::string message) :
-		_Exception(message) {}
-};
-
 
 class Date {
 private:
