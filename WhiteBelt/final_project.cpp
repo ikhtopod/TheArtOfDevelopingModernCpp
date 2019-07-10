@@ -64,9 +64,25 @@ public:
 
 class Date {
 private:
+	static const int MIN_MONTH = 1;
+	static const int MIN_DAY = 1;
+
+	static const int MAX_MONTH = 12;
+	static const int MAX_DAY = 31;
+
+private:
 	int m_day {};
 	int m_month {};
 	int m_year {};
+
+private:
+	void checkValidityDate() {
+		if (m_month < Date::MIN_MONTH || m_month > Date::MAX_MONTH) {
+			throw DateException("Month value is invalid: " + std::to_string(m_month));
+		} else if (m_day < Date::MIN_DAY || m_day > Date::MAX_DAY) {
+			throw DateException("Day value is invalid: " + std::to_string(m_day));
+		}
+	}
 
 public:
 	explicit Date() : Date(0, 0, 0) {}
@@ -137,6 +153,8 @@ public:
 
 			date.ignore(1);
 		}//rof
+
+		rhs.checkValidityDate();
 
 		return lhs;
 	}
