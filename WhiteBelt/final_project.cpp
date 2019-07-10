@@ -3,7 +3,6 @@
 #include <string>
 #include <sstream>
 #include <stdexcept>
-#include <exception>
 #include <memory>
 #include <map>
 #include <set>
@@ -55,14 +54,41 @@ public:
 
 };
 
-class DateException : public std::exception {
+class _Exception {
+protected:
+	std::string m_message {};
+
 public:
-	explicit DateException() : DateException("") {}
-	explicit DateException(std::string message) :
-		DateException(message.c_str()) {}
-	explicit DateException(const char* message) :
-		std::exception(message) {}
+	explicit _Exception() : _Exception("") {}
+	explicit _Exception(std::string message)
+		: m_message(message) {}
+
+	virtual std::string what() const {
+		return m_message;
+	}
 };
+
+class DateException : public _Exception {
+public:
+	explicit DateException() : _Exception() {}
+	explicit DateException(std::string message) :
+		_Exception(message) {}
+};
+
+class OperationException : public _Exception {
+public:
+	explicit OperationException() : _Exception() {}
+	explicit OperationException(std::string message) :
+		_Exception(message) {}
+};
+
+class CommandHandlerException : public _Exception {
+public:
+	explicit CommandHandlerException() : _Exception() {}
+	explicit CommandHandlerException(std::string message) :
+		_Exception(message) {}
+};
+
 
 class Date {
 private:
@@ -294,16 +320,6 @@ public:
 	}
 };
 
-
-class OperationException : public std::exception {
-public:
-	explicit OperationException() : OperationException("") {}
-	explicit OperationException(std::string message) :
-		OperationException(message.c_str()) {}
-	explicit OperationException(const char* message) :
-		std::exception(message) {}
-};
-
 enum class OperationType : uint8_t {
 	NONE,
 	ADD, DEL,
@@ -363,16 +379,6 @@ public:
 	}
 
 	bool isNone() { return m_operation == OperationType::NONE; }
-};
-
-
-class CommandHandlerException : public std::exception {
-public:
-	explicit CommandHandlerException() : CommandHandlerException("") {}
-	explicit CommandHandlerException(std::string message) :
-		CommandHandlerException(message.c_str()) {}
-	explicit CommandHandlerException(const char* message) :
-		std::exception(message) {}
 };
 
 class CommandHandler final {
