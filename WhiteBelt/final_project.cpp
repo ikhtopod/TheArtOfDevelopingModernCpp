@@ -172,41 +172,13 @@ public:
 			return lhs;
 		}
 
-		for (auto* x : { &rhs.m_year, &rhs.m_month, &rhs.m_day }) {
-			bool isNegative = false;
-
-			if (date.peek() == '-') {
-				isNegative = true;
-				date.ignore(1);
-			}//fi
-
-			if (std::isdigit(date.peek())) {
-				date >> *x;
-
-				if (isNegative) {
-					*x = -*x;
-				}//fi
-			} else {
-				throw DateException("Wrong date format: " + date.str());
-			}//fi
-
-			if (x != &rhs.m_day) {
-				if (date.peek() != '-') {
-					throw DateException("Wrong date format: " + date.str());
-				}//fi
-
-				date.ignore(1);
-			}//fi
-		}//rof
-
-		tmp.clear();
-		date >> tmp;
-
-		if (!tmp.empty()) {
+		char c1, c2;
+		if ((date >> rhs.m_year >> c1 >> rhs.m_month >> c2 >> rhs.m_day) &&
+			(date.eof() && c1 == '-' && c2 == '-')) {
+			rhs.checkValidityDate();
+		} else {
 			throw DateException("Wrong date format: " + date.str());
 		}
-
-		rhs.checkValidityDate();
 
 		return lhs;
 	}
