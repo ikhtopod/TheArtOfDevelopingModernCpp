@@ -248,16 +248,20 @@ public:
 	}
 };
 
-class CommandHandlerException : public std::exception {
+
+class OperationException : public std::exception {
 public:
-	explicit CommandHandlerException() : CommandHandlerException("") {}
-	explicit CommandHandlerException(const char* const message) :
+	explicit OperationException() : OperationException("") {}
+	explicit OperationException(std::string message) :
+		OperationException(message.c_str()) {}
+	explicit OperationException(const char* const message) :
 		std::exception(message) {}
 };
 
-
 enum class OperationType : uint8_t {
-	NONE, ADD, DEL, FIND, PRINT
+	NONE,
+	ADD, DEL,
+	FIND, PRINT
 };
 
 class Operation final {
@@ -297,6 +301,10 @@ public:
 
 		rhs.init(operation);
 
+		if (rhs.isNone()) {
+			throw OperationException("Unknown command: " + operation);
+		}
+
 		return lhs;
 	}
 
@@ -305,6 +313,16 @@ public:
 	}
 
 	bool isNone() { return m_operation == OperationType::NONE; }
+};
+
+
+class CommandHandlerException : public std::exception {
+public:
+	explicit CommandHandlerException() : CommandHandlerException("") {}
+	explicit CommandHandlerException(std::string message) :
+		CommandHandlerException(message.c_str()) {}
+	explicit CommandHandlerException(const char* const message) :
+		std::exception(message) {}
 };
 
 class CommandHandler final {
@@ -365,8 +383,12 @@ int main() {
 
 	std::string command;
 	while (std::getline(std::cin, command)) {
+		if (command.empty()) continue;
+
 		try {
 			ch.handle(command)->run(db);
+		} catch (OperationException& e) {
+			std::cout << e.what() << std::endl;
 		} catch (...) {}
 	}
 
