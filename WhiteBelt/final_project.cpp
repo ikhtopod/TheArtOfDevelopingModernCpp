@@ -99,6 +99,12 @@ public:
 		return false;
 	}
 
+	void reset() {
+		m_year = 0;
+		m_month = 0;
+		m_day = 0;
+	}
+
 	friend std::ostream& operator<<(std::ostream& lhs, const Date& rhs) {
 		lhs << std::setfill('0') <<
 			std::setw(4) << rhs.m_year << "-" <<
@@ -109,17 +115,13 @@ public:
 	}
 
 	friend std::istream& operator>>(std::istream& lhs, Date& rhs) {
-		int year = 0, month = 0, day = 0;
+		rhs.reset();
 
-		lhs >> year;
+		lhs >> rhs.m_year;
 		lhs.ignore(1);
-		lhs >> month;
+		lhs >> rhs.m_month;
 		lhs.ignore(1);
-		lhs >> day;
-
-		rhs.m_year = year;
-		rhs.m_month = month;
-		rhs.m_day = day;
+		lhs >> rhs.m_day;
 
 		return lhs;
 	}
