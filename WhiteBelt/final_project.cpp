@@ -180,13 +180,14 @@ public:
 				date.ignore(1);
 			}//fi
 
-			if (date.peek() == '-') {
-				throw DateException("Wrong date format: " + date.str());
-			} else {
+			if (std::isdigit(date.peek())) {
 				date >> *x;
+
 				if (isNegative) {
 					*x = -*x;
 				}//fi
+			} else {
+				throw DateException("Wrong date format: " + date.str());
 			}//fi
 
 			if (x != &rhs.m_day) {
