@@ -2,6 +2,8 @@
 #include <iomanip>
 #include <string>
 #include <sstream>
+#include <stdexcept>
+#include <exception>
 #include <memory>
 #include <map>
 #include <set>
@@ -58,7 +60,7 @@ public:
 	explicit DateException() : DateException("") {}
 	explicit DateException(std::string message) :
 		DateException(message.c_str()) {}
-	explicit DateException(const char* const message) :
+	explicit DateException(const char* message) :
 		std::exception(message) {}
 };
 
@@ -298,7 +300,7 @@ public:
 	explicit OperationException() : OperationException("") {}
 	explicit OperationException(std::string message) :
 		OperationException(message.c_str()) {}
-	explicit OperationException(const char* const message) :
+	explicit OperationException(const char* message) :
 		std::exception(message) {}
 };
 
@@ -369,7 +371,7 @@ public:
 	explicit CommandHandlerException() : CommandHandlerException("") {}
 	explicit CommandHandlerException(std::string message) :
 		CommandHandlerException(message.c_str()) {}
-	explicit CommandHandlerException(const char* const message) :
+	explicit CommandHandlerException(const char* message) :
 		std::exception(message) {}
 };
 
@@ -436,7 +438,7 @@ int main() {
 			std::cout << e.what() << std::endl;
 		} catch (DateException& e) {
 			std::cout << e.what() << std::endl;
-		} catch (...) {}
+		}
 	}
 
 	return 0;
