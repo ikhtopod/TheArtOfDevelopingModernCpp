@@ -182,6 +182,13 @@ public:
 			date.ignore(1);
 		}//rof
 
+		str.clear();
+		date >> str;
+
+		if (!str.empty()) {
+			throw DateException("Wrong date format: " + date.str());
+		}
+
 		rhs.checkValidityDate();
 
 		return lhs;
