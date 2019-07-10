@@ -173,7 +173,21 @@ public:
 		}
 
 		for (auto* x : { &rhs.m_year, &rhs.m_month, &rhs.m_day }) {
-			date >> *x;
+			bool isNegative = false;
+
+			if (date.peek() == '-') {
+				isNegative = true;
+				date.ignore(1);
+			}//fi
+
+			if (date.peek() == '-') {
+				throw DateException("Wrong date format: " + date.str());
+			} else {
+				date >> *x;
+				if (isNegative) {
+					*x = -*x;
+				}//fi
+			}//fi
 
 			if (x != &rhs.m_day) {
 				if (date.peek() != '-') {
