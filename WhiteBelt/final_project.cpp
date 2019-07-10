@@ -373,13 +373,12 @@ private:
 
 public:
 	std::shared_ptr<ICommand> handle(const std::string& cmd) {
-		m_cmd = std::stringstream { cmd };
-
-		m_cmd >> m_operation >> m_date >> m_event;
-
-		if (m_operation.isNone()) {
+		if (cmd.empty()) {
 			throw CommandHandlerException();
 		}
+
+		m_cmd = std::stringstream { cmd };
+		m_cmd >> m_operation >> m_date >> m_event;
 
 		return assign();
 	}
@@ -392,8 +391,6 @@ int main() {
 
 	std::string command;
 	while (std::getline(std::cin, command)) {
-		if (command.empty()) continue;
-
 		try {
 			ch.handle(command)->run(db);
 		} catch (OperationException& e) {
