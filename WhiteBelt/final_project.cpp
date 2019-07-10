@@ -117,11 +117,26 @@ public:
 	friend std::istream& operator>>(std::istream& lhs, Date& rhs) {
 		rhs.reset();
 
-		lhs >> rhs.m_year;
-		lhs.ignore(1);
-		lhs >> rhs.m_month;
-		lhs.ignore(1);
-		lhs >> rhs.m_day;
+		std::string str {};
+		lhs >> str;
+		std::stringstream date {};
+		date << str;
+
+		if (date.str().empty()) {
+			return lhs;
+		}
+
+		for (auto* x : { &rhs.m_year, &rhs.m_month, &rhs.m_day }) {
+			date >> *x;
+
+			if (x != &rhs.m_day) {
+				if (date.peek() != '-') {
+					throw DateException("Wrong date format: " + date.str());
+				}//fi
+			}//fi
+
+			date.ignore(1);
+		}//rof
 
 		return lhs;
 	}
@@ -309,6 +324,10 @@ public:
 	friend std::istream& operator>>(std::istream& lhs, Operation& rhs) {
 		std::string operation {};
 		lhs >> operation;
+
+		if (operation.empty()) {
+			return lhs;
+		}
 
 		rhs.init(operation);
 
