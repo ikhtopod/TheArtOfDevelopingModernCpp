@@ -438,7 +438,7 @@ int main() {
 			std::cout << e.what() << std::endl;
 		} catch (DateException& e) {
 			std::cout << e.what() << std::endl;
-		}
+		} catch (CommandHandlerException&) {}
 	}
 
 	return 0;
