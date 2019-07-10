@@ -179,9 +179,9 @@ public:
 				if (date.peek() != '-') {
 					throw DateException("Wrong date format: " + date.str());
 				}//fi
-			}//fi
 
-			date.ignore(1);
+				date.ignore(1);
+			}//fi
 		}//rof
 
 		str.clear();
