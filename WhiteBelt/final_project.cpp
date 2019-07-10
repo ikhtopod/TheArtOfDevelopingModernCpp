@@ -225,7 +225,8 @@ public:
 	CommandDelDate(Date date) : m_date(date) {}
 
 	virtual void run(Database& db) override {
-		db.DeleteDate(m_date);
+		int totalDeleted = db.DeleteDate(m_date);
+		std::cout << "Deleted " << totalDeleted << " events" << std::endl;
 	}
 };
 
@@ -239,7 +240,11 @@ public:
 		m_date(date), m_event(event) {}
 
 	virtual void run(Database& db) override {
-		db.DeleteEvent(m_date, m_event);
+		if (db.DeleteEvent(m_date, m_event)) {
+			std::cout << "Deleted successfully" << std::endl;
+		} else {
+			std::cout << "Event not found" << std::endl;
+		}//fi
 	}
 };
 
