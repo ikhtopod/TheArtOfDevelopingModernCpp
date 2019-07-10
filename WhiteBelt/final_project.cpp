@@ -162,11 +162,11 @@ public:
 
 	friend std::istream& operator>>(std::istream& lhs, Date& rhs) {
 		rhs.reset();
+		std::string tmp {};
 
-		std::string str {};
-		lhs >> str;
+		lhs >> tmp;
 		std::stringstream date {};
-		date << str;
+		date << tmp;
 
 		if (date.str().empty()) {
 			return lhs;
@@ -184,10 +184,10 @@ public:
 			}//fi
 		}//rof
 
-		str.clear();
-		date >> str;
+		tmp.clear();
+		date >> tmp;
 
-		if (!str.empty()) {
+		if (!tmp.empty()) {
 			throw DateException("Wrong date format: " + date.str());
 		}
 
