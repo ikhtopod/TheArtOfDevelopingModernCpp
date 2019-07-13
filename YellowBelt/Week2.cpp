@@ -20,13 +20,15 @@ void Sum_Test2() {
 	assert(Sum(-2, 2) == 0);
 }
 
-void RunAllTests() {
+bool RunAllTests() {
 	RUN_TEST(Sum_Test());
 	RUN_TEST(Sum_Test2());
+
+	return true;
 }
 
 int main() {
-	RunAllTests();
+	if (RunAllTests()) return 0;
 
 	return 0;
 }
