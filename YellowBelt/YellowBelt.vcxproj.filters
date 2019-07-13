@@ -48,5 +48,8 @@
     <ClCompile Include="Week2.cpp">
       <Filter>Исходные файлы\Week2</Filter>
     </ClCompile>
+    <ClCompile Include="Task_008.cpp">
+      <Filter>Исходные файлы\Week2</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>
