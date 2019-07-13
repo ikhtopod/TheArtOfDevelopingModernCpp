@@ -3,49 +3,49 @@
 #include <vector>
 #include <map>
 
-template<typename First, typename Second>
-std::pair<First, Second> operator*(const std::pair<First, Second>&, const std::pair<First, Second>&);
+template <typename T>
+T Sqr(T);
 
-template<typename Key, typename Value>
-std::map<Key, Value> operator*(const std::map<Key, Value>&, const std::map<Key, Value>&);
+template <typename T>
+std::vector<T> Sqr(const std::vector<T>&);
 
-template<typename T>
-std::vector<T> operator*(const std::vector<T>&, const std::vector<T>&);
+template <typename First, typename Second>
+std::pair<First, Second> Sqr(const std::pair<First, Second>&);
 
-template <typename T> T Sqr(T);
+template <typename Key, typename Value>
+std::map<Key, Value> Sqr(const std::map<Key, Value>&);
 
-
-
-template<typename First, typename Second>
-std::pair<First, Second> operator*(const std::pair<First, Second>& lhs, const std::pair<First, Second>& rhs) {
-	return std::make_pair(lhs.first * rhs.first, lhs.second * rhs.second);
-}
-
-template<typename Key, typename Value>
-std::map<Key, Value> operator*(const std::map<Key, Value>& lhs, const std::map<Key, Value>& rhs) {
-	std::map<Key, Value> result {};
-
-	for (const auto& [key, value] : lhs) {
-		result[key] = value * rhs.at(key);
-	}
-
-	return result;
-}
-
-template<typename T>
-std::vector<T> operator*(const std::vector<T>& lhs, const std::vector<T>& rhs) {
-	std::vector<T> result {};
-
-	for (size_t i = 0; i < lhs.size(); ++i) {
-		result.push_back(lhs[i] * rhs[i]);
-	}
-
-	return result;
-}
 
 template <typename T>
 T Sqr(T x) {
 	return x * x;
+}
+
+template <typename T>
+std::vector<T> Sqr(const std::vector<T>& x) {
+	std::vector<T> result {};
+
+	for (const auto& i : x) {
+		result.push_back(Sqr(i));
+	}
+
+	return result;
+}
+
+template <typename First, typename Second>
+std::pair<First, Second> Sqr(const std::pair<First, Second>& x) {
+	return std::make_pair(Sqr(x.first), Sqr(x.second));
+}
+
+template <typename Key, typename Value>
+std::map<Key, Value> Sqr(const std::map<Key, Value>& x) {
+	std::map<Key, Value> result {};
+
+	for (const auto& [key, value] : x) {
+		result[key] = Sqr(value);
+	}
+
+	return result;
 }
 
 /**
