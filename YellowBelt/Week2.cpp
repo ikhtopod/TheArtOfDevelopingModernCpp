@@ -9,7 +9,7 @@
 #include <map>
 #include <set>
 
-/* Unit Test System */
+#pragma region Unit Test System
 
 namespace ru::lifanoff::utest {
 
@@ -90,13 +90,22 @@ void AssertEqual(const T& t, const U& u, const std::string& hint) {
 		std::ostringstream oss {};
 		oss << "Assertion failed: " <<
 			t << " != " << u <<
-			" Hint: " << hint;
+			" hint: " << hint;
 		throw std::runtime_error { oss.str() };
 	}//fi
 }
 
+template <class T, class U>
+void AssertEqual(const T& t, const U& u) {
+	AssertEqual(t, u, {});
+}
+
 void Assert(bool b, const std::string& hint) {
 	AssertEqual(b, true, hint);
+}
+
+void Assert(bool b) {
+	AssertEqual(b, true, {});
 }
 
 
@@ -114,7 +123,7 @@ public:
 
 TestRunner::~TestRunner() {
 	if (this->m_failCounter > 0) {
-		std::cout << this->m_failCounter << " tests failed. Terminate";
+		std::cout << this->m_failCounter << " unit tests failed. Terminate";
 		exit(EXIT_FAILURE);
 	}
 }
@@ -129,12 +138,16 @@ void TestRunner::RunTest(TestFunc func, const std::string& funcName) {
 	} catch (const std::exception& e) {
 		this->m_failCounter++;
 		std::cerr << "failed: " << e.what() << std::endl;
+	} catch (...) {
+		this->m_failCounter++;
+		std::cerr << "Unknown exception caught" << std::endl;
 	}
 }
 
 }//! namespace ru::lifanoff::utest
 
-/* Unit Test System */
+#pragma endregion
+
 
 namespace ns_UTest = ru::lifanoff::utest;
 
