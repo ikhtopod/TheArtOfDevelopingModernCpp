@@ -4,6 +4,8 @@
 #include <sstream>
 #include <cassert>
 #include <stdexcept>
+#include <utility>
+#include <vector>
 #include <map>
 #include <set>
 
@@ -11,8 +13,26 @@
 
 namespace ru::lifanoff::utest {
 
+// begin prototypes
 template <class Value>
-std::ostream& operator<<(std::ostream& lhs, const std::set<Value> rhs) {
+std::ostream& operator<<(std::ostream& lhs, const std::vector<Value>& rhs);
+
+template <class Value>
+std::ostream& operator<<(std::ostream& lhs, const std::set<Value>& rhs);
+
+template <class First, class Second>
+std::ostream& operator<<(std::ostream& lhs, const std::pair<First, Second>& rhs);
+
+template <class Key, class Value>
+std::ostream& operator<<(std::ostream& lhs, const std::map<Key, Value>& rhs);
+
+
+// end prototypes
+
+namespace additional {
+
+template <class Collection>
+std::ostream& PrintCollection(std::ostream& lhs, const Collection& rhs) {
 	lhs << '{';
 
 	bool first = true;
@@ -29,8 +49,25 @@ std::ostream& operator<<(std::ostream& lhs, const std::set<Value> rhs) {
 	return lhs << '}';
 }
 
+} //! additional
+
+template <class Value>
+std::ostream& operator<<(std::ostream& lhs, const std::vector<Value>& rhs) {
+	return additional::PrintCollection(lhs, rhs);
+}
+
+template <class Value>
+std::ostream& operator<<(std::ostream& lhs, const std::set<Value>& rhs) {
+	return additional::PrintCollection(lhs, rhs);
+}
+
+template <class First, class Second>
+std::ostream& operator<<(std::ostream& lhs, const std::pair<First, Second>& rhs) {
+	return lhs << '{' << rhs.first << ": " << rhs.second << '}';
+}
+
 template <class Key, class Value>
-std::ostream& operator<<(std::ostream& lhs, const std::map<Key, Value> rhs) {
+std::ostream& operator<<(std::ostream& lhs, const std::map<Key, Value>& rhs) {
 	lhs << '{';
 
 	bool first = true;
@@ -95,7 +132,7 @@ void TestRunner::RunTest(TestFunc func, const std::string& funcName) {
 	}
 }
 
-}// namespace ru::lifanoff::utest
+}//! namespace ru::lifanoff::utest
 
 /* Unit Test System */
 
@@ -107,15 +144,14 @@ void Sum_Test1() {
 	ns_UTest::AssertEqual(Sum(2, 3), 5, "Sum(2, 3), 5");
 	ns_UTest::AssertEqual(Sum(-2, -3), -5, "Sum(-2, -3), -5");
 	ns_UTest::AssertEqual(Sum(-2, 0), -2, "Sum(-2, 0), -2");
-	//ns_UTest::AssertEqual(Sum(-2, 0), 2, "Sum(-2, 0), 2"); // wrong
 	ns_UTest::AssertEqual(Sum(-2, 2), 0, "Sum(-2, 2), 0");
 }
 void Sum_Test2() {
 	ns_UTest::AssertEqual(Sum(2, 3), 5, "Sum(2, 3), 5");
 	ns_UTest::AssertEqual(Sum(-2, -3), -5, "Sum(-2, -3), -5");
 	ns_UTest::AssertEqual(Sum(-2, 0), -2, "Sum(-2, 0), -2");
-	ns_UTest::AssertEqual(Sum(-2, 0), 2, "Sum(-2, 0), 2"); // wrong
 	ns_UTest::AssertEqual(Sum(-2, 2), 0, "Sum(-2, 2), 0");
+	ns_UTest::AssertEqual(Sum(-2, 0), 2, "Sum(-2, 0), 2"); // wrong
 }
 
 void Sum_Test3() {
@@ -163,7 +199,7 @@ void Sum_Test4() {
 		ns_UTest::Assert(!(m3.empty() && m4.empty()), "6");
 	}
 
-	{ // wrong
+	{// wrong
 		std::map<std::string, std::set<size_t>> m3 {
 			{"random numbers", { 1, 6, 3, 7, 3, 8, 5, 14, 12, 18, 14, 5, 7 }},
 			{"shuffle unique fibonacci", { 0, 1, 2, 3, 5, 89, 8, 13, 34, 34, 89, 21, 1, 55 }},
@@ -176,7 +212,75 @@ void Sum_Test4() {
 
 		ns_UTest::AssertEqual(m3, m4, "7");
 		ns_UTest::Assert(!(m3.empty() && m4.empty()), "8");
-	} // wrong
+	}// wrong
+}
+
+void Sum_Test5() {
+	{
+		std::map<std::string, std::vector<size_t>> m1 {};
+		std::map<std::string, std::vector<size_t>> m2 {};
+
+		ns_UTest::AssertEqual(m1, m2, "1");
+		ns_UTest::Assert(m1.empty() && m2.empty(), "2");
+	}
+	{
+		std::map<std::string, std::vector<size_t>> m3 {
+			{"random numbers", { 1, 6, 3, 7, 3, 8, 5, 14, 12, 18, 14, 5, 7 }},
+			{"shuffle unique fibonacci", { 0, 1, 2, 3, 5, 89, 8, 13, 34, 34, 89, 21, 1, 55 }},
+		};
+
+		std::map<std::string, std::vector<size_t>> m4 {
+			{"random numbers", { 1, 6, 3, 7, 3, 8, 5, 14, 12, 18, 14, 5, 7 }},
+			{"shuffle unique fibonacci", { 0, 1, 2, 3, 5, 89, 8, 13, 34, 34, 89, 21, 1, 55 }},
+		};
+
+		ns_UTest::AssertEqual(m3, m4, "3");
+		ns_UTest::Assert(!(m3.empty() && m4.empty()), "4");
+	}
+	{// wrong
+		std::map<std::string, std::vector<size_t>> m3 {
+			{"random numbers", { 1, 2, 3 }},
+			{"shuffle unique fibonacci", { 0, 1, 1 }},
+		};
+
+		std::map<std::string, std::vector<size_t>> m4 {
+			{"random numbers", { 0, 1, 1 }},
+			{"shuffle unique fibonacci", { 1, 2, 3 }},
+		};
+
+		ns_UTest::AssertEqual(m3, m4, "7");
+		ns_UTest::Assert(!(m3.empty() && m4.empty()), "8");
+	}// wrong
+}
+
+void Sum_Test6() {
+	{
+		std::string strP1 { "" };
+		std::pair<std::string, size_t> p1 { strP1, strP1.size() };
+
+		std::string strP2 { "" };
+		std::pair<std::string, size_t> p2 { strP2, strP2.size() };
+
+		ns_UTest::AssertEqual(p1, p2, "1");
+	}
+	{
+		std::string strP1 { "Hello" };
+		std::pair<std::string, size_t> p1 { strP1, strP1.size() };
+
+		std::string strP2 { "Hello" };
+		std::pair<std::string, size_t> p2 { strP2, strP2.size() };
+
+		ns_UTest::AssertEqual(p1, p2, "2");
+	}
+	{// wrong
+		std::string strP1 { "Hello" };
+		std::pair<std::string, size_t> p1 { strP1, strP1.size() };
+
+		std::string strP2 { "Howdy" };
+		std::pair<std::string, size_t> p2 { strP2, strP2.size() };
+
+		ns_UTest::AssertEqual(p1, p2, "3");
+	}// wrong
 }
 
 void RunAllTests() {
@@ -186,6 +290,8 @@ void RunAllTests() {
 	tr.RunTest(Sum_Test2, "Sum_Test2");
 	tr.RunTest(Sum_Test3, "Sum_Test3");
 	tr.RunTest(Sum_Test4, "Sum_Test4");
+	tr.RunTest(Sum_Test5, "Sum_Test5");
+	tr.RunTest(Sum_Test6, "Sum_Test6");
 }
 
 int main() {
