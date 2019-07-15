@@ -1,4 +1,6 @@
 #include <cstdlib>
+#include <random>
+#include <chrono>
 #include <iostream>
 #include <string>
 #include <sstream>
@@ -143,6 +145,58 @@ void TestRunner::RunTest(TestFunc func, const std::string& funcName) {
 		std::cerr << "Unknown exception caught" << std::endl;
 	}
 }
+
+/**
+	\code
+		RandomYearGenerator ryg { 1700, 2019 };
+		int year = ryg.GetRandomYear();
+	\endcode
+*/
+class RandomYearGenerator final {
+private:
+	inline static const int DEFAULT_MIN_YEAR = 0;
+	inline static const int DEFAULT_MAX_YEAR = 2019;
+
+private:
+	uint32_t m_seed = 0;
+
+	int m_minYear = DEFAULT_MIN_YEAR;
+	int	m_maxYear = DEFAULT_MAX_YEAR;
+
+	std::default_random_engine m_dre { m_seed };
+	std::uniform_int_distribution<int> m_uid { m_minYear, m_maxYear };
+
+	int m_year = DEFAULT_MIN_YEAR;
+
+private:
+	static uint32_t GenerateSeed() {
+		using namespace std::chrono;
+
+		time_point<steady_clock> nowTime = steady_clock::now();
+		long long year = nowTime.time_since_epoch().count();
+		return static_cast<uint32_t>(year);
+	}
+
+public:
+	RandomYearGenerator() :
+		RandomYearGenerator(DEFAULT_MIN_YEAR, DEFAULT_MAX_YEAR) {}
+
+	RandomYearGenerator(int minYear, int maxYear) :
+		RandomYearGenerator(GenerateSeed(), minYear, maxYear) {}
+
+	RandomYearGenerator(uint32_t seed, int minYear, int maxYear) :
+		m_seed(seed), m_minYear(minYear), m_maxYear(maxYear),
+		m_dre(m_seed), m_uid(m_minYear, m_maxYear) {}
+
+	int GetRandomYear() {
+		m_year = m_uid(m_dre);
+		return GetLastYear();
+	}
+
+	int GetLastYear() {
+		return m_year;
+	}
+};
 
 }//! namespace ru::lifanoff::utest
 
