@@ -11,24 +11,6 @@
 
 namespace ru::lifanoff::utest {
 
-template <class Key, class Value>
-std::ostream& operator<<(std::ostream& lhs, const std::map<Key, Value> rhs) {
-	lhs << '{';
-
-	bool first = true;
-	for (const auto& [key, value] : rhs) {
-		if (first) {
-			first = false;
-		} else {
-			lhs << ", ";
-		}//fi
-
-		lhs << key << ": " << value;
-	}//rof
-
-	return lhs << '}';
-}
-
 template <class Value>
 std::ostream& operator<<(std::ostream& lhs, const std::set<Value> rhs) {
 	lhs << '{';
@@ -42,6 +24,24 @@ std::ostream& operator<<(std::ostream& lhs, const std::set<Value> rhs) {
 		}//fi
 
 		lhs << value;
+	}//rof
+
+	return lhs << '}';
+}
+
+template <class Key, class Value>
+std::ostream& operator<<(std::ostream& lhs, const std::map<Key, Value> rhs) {
+	lhs << '{';
+
+	bool first = true;
+	for (const auto& [key, value] : rhs) {
+		if (first) {
+			first = false;
+		} else {
+			lhs << ", ";
+		}//fi
+
+		lhs << key << ": " << value;
 	}//rof
 
 	return lhs << '}';
@@ -126,12 +126,66 @@ void Sum_Test3() {
 					 "Sum(2, 4) == Sum(Sum(1, 1), Sum(2, 2)");
 }
 
+void Sum_Test4() {
+	{
+		std::map<std::string, std::set<size_t>> m1 {};
+		std::map<std::string, std::set<size_t>> m2 {};
+
+		ns_UTest::AssertEqual(m1, m2, "1");
+		ns_UTest::Assert(m1.empty() && m2.empty(), "2");
+	}
+	{
+		std::map<std::string, std::set<size_t>> m3 {
+			{"random numbers", { 1, 6, 3, 7, 3, 8, 5, 14, 12, 18, 14, 5, 7 }},
+			{"shuffle unique fibonacci", { 0, 1, 2, 3, 5, 89, 8, 13, 34, 34, 89, 21, 1, 55 }},
+		};
+
+		std::map<std::string, std::set<size_t>> m4 {
+			{"random numbers", { 1, 6, 3, 7, 3, 8, 5, 14, 12, 18, 14, 5, 7 }},
+			{"shuffle unique fibonacci", { 0, 1, 2, 3, 5, 89, 8, 13, 34, 34, 89, 21, 1, 55 }},
+		};
+
+		ns_UTest::AssertEqual(m3, m4, "3");
+		ns_UTest::Assert(!(m3.empty() && m4.empty()), "4");
+	}
+	{
+		std::map<std::string, std::set<size_t>> m3 {
+			{"random numbers", { 1, 6, 3, 7, 3, 8, 5, 14, 12, 18, 14, 5, 7 }},
+			{"shuffle unique fibonacci", { 0, 1, 2, 3, 5, 89, 8, 13, 34, 34, 89, 21, 1, 55 }},
+		};
+
+		std::map<std::string, std::set<size_t>> m4 {
+			{"random numbers", { 1, 6, 3, 7, 3, 7, 8, 5, 12, 18, 14, 5, 5 }},
+			{"shuffle unique fibonacci", { 5, 89, 3, 8, 2, 1, 13, 1, 34, 0, 34, 89, 21, 1, 3, 55 }},
+		};
+
+		ns_UTest::AssertEqual(m3, m4, "5");
+		ns_UTest::Assert(!(m3.empty() && m4.empty()), "6");
+	}
+
+	{ // wrong
+		std::map<std::string, std::set<size_t>> m3 {
+			{"random numbers", { 1, 6, 3, 7, 3, 8, 5, 14, 12, 18, 14, 5, 7 }},
+			{"shuffle unique fibonacci", { 0, 1, 2, 3, 5, 89, 8, 13, 34, 34, 89, 21, 1, 55 }},
+		};
+
+		std::map<std::string, std::set<size_t>> m4 {
+			{"random numbers", { 1, 6, 3, 7, 3, 7, 5, 12, 18, 14, 5, 5 }},
+			{"shuffle unique fibonacci", { 5, 89, 3, 8, 2, 1, 13, 1, 34, 0, 34, 89, 21, 1, 3, 55 }},
+		};
+
+		ns_UTest::AssertEqual(m3, m4, "7");
+		ns_UTest::Assert(!(m3.empty() && m4.empty()), "8");
+	} // wrong
+}
+
 void RunAllTests() {
 	ns_UTest::TestRunner tr {};
 
 	tr.RunTest(Sum_Test1, "Sum_Test1");
 	tr.RunTest(Sum_Test2, "Sum_Test2");
 	tr.RunTest(Sum_Test3, "Sum_Test3");
+	tr.RunTest(Sum_Test4, "Sum_Test4");
 }
 
 int main() {
