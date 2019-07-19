@@ -19,6 +19,9 @@
     <Filter Include="Исходные файлы\Week2">
       <UniqueIdentifier>{ee7e3c8d-832b-4d2f-9bf0-51209c3d5a4c}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Файлы заголовков\Week2">
+      <UniqueIdentifier>{6846e62d-102a-4bf7-87de-3a3eba0c144f}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Week1.cpp">
@@ -63,8 +66,13 @@
     <ClCompile Include="Task_012.cpp">
       <Filter>Исходные файлы\Week2</Filter>
     </ClCompile>
-    <ClCompile Include="Task_013.cpp">
+    <ClCompile Include="sum_reverse_sort.cpp">
       <Filter>Исходные файлы\Week2</Filter>
     </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="sum_reverse_sort.h">
+      <Filter>Файлы заголовков\Week2</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
