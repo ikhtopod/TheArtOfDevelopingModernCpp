@@ -11,7 +11,7 @@
     </Filter>
     <Filter Include="Файлы ресурсов">
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
-      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+      <Extensions>zip;rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
     <Filter Include="Исходные файлы\Week1">
       <UniqueIdentifier>{01c57d11-36a6-4221-a78a-c60b2bea3c60}</UniqueIdentifier>
@@ -21,6 +21,12 @@
     </Filter>
     <Filter Include="Файлы заголовков\Week2">
       <UniqueIdentifier>{6846e62d-102a-4bf7-87de-3a3eba0c144f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Исходные файлы\Week2\Task_016">
+      <UniqueIdentifier>{7b9c0ab5-fb1f-4a80-8188-fc1af7d503f4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Файлы заголовков\Week2\Task_016">
+      <UniqueIdentifier>{843642b8-26d8-4f54-a4f3-80af2c2b4450}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -75,6 +81,18 @@
     <ClCompile Include="rectangle.cpp">
       <Filter>Исходные файлы\Week2</Filter>
     </ClCompile>
+    <ClCompile Include="query.cpp">
+      <Filter>Исходные файлы\Week2\Task_016</Filter>
+    </ClCompile>
+    <ClCompile Include="responses.cpp">
+      <Filter>Исходные файлы\Week2\Task_016</Filter>
+    </ClCompile>
+    <ClCompile Include="bus_manager.cpp">
+      <Filter>Исходные файлы\Week2\Task_016</Filter>
+    </ClCompile>
+    <ClCompile Include="main.cpp">
+      <Filter>Исходные файлы\Week2\Task_016</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="sum_reverse_sort.h">
@@ -86,5 +104,19 @@
     <ClInclude Include="rectangle.h">
       <Filter>Файлы заголовков\Week2</Filter>
     </ClInclude>
+    <ClInclude Include="query.h">
+      <Filter>Файлы заголовков\Week2\Task_016</Filter>
+    </ClInclude>
+    <ClInclude Include="responses.h">
+      <Filter>Файлы заголовков\Week2\Task_016</Filter>
+    </ClInclude>
+    <ClInclude Include="bus_manager.h">
+      <Filter>Файлы заголовков\Week2\Task_016</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Task_016.zip">
+      <Filter>Файлы ресурсов</Filter>
+    </None>
   </ItemGroup>
 </Project>
