@@ -8,13 +8,12 @@
 PhoneNumber::PhoneNumber(const std::string& international_number) {
 	std::istringstream tmp { international_number };
 
-	std::string str_plus {};
-	std::getline(tmp, str_plus, '+');
+	char charPlus = tmp.get();
 	std::getline(tmp, country_code_, '-');
 	std::getline(tmp, city_code_, '-');
 	std::getline(tmp, local_number_);
 
-	if (!str_plus.empty() ||
+	if (charPlus == '+' ||
 		country_code_.empty() || city_code_.empty() || local_number_.empty()) {
 		throw std::invalid_argument { "" };
 	}
