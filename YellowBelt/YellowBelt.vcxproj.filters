@@ -72,12 +72,18 @@
     <ClCompile Include="phone_number.cpp">
       <Filter>Исходные файлы\Week2</Filter>
     </ClCompile>
+    <ClCompile Include="rectangle.cpp">
+      <Filter>Исходные файлы\Week2</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="sum_reverse_sort.h">
       <Filter>Файлы заголовков\Week2</Filter>
     </ClInclude>
     <ClInclude Include="phone_number.h">
+      <Filter>Файлы заголовков\Week2</Filter>
+    </ClInclude>
+    <ClInclude Include="rectangle.h">
       <Filter>Файлы заголовков\Week2</Filter>
     </ClInclude>
   </ItemGroup>
