@@ -1,16 +1,7 @@
 #include <iostream>
 #include <algorithm>
+#include <numeric>
 #include <vector>
-
-void FillReverseRangeFromNTo1(std::vector<int>& numbers, int n) {
-	numbers.clear();
-	numbers.resize(n);
-
-	int counter = n;
-	for (auto& n : numbers) {
-		n = counter--;
-	}
-}
 
 void PrintNumbers(const std::vector<int>& numbers) {
 	for (const auto& n : numbers) {
@@ -30,8 +21,9 @@ int main() {
 	int n = 1;
 	std::cin >> n;
 
-	std::vector<int> numbers {};
-	FillReverseRangeFromNTo1(numbers, n);
+	std::vector<int> numbers(n);
+	std::iota(std::rbegin(numbers), std::rend(numbers), 1);
+
 	PrintReversePermutations(numbers);
 
 	return 0;
