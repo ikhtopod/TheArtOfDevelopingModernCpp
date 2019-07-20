@@ -111,6 +111,12 @@
     <ClCompile Include="Task_018.cpp">
       <Filter>Исходные файлы\Week4</Filter>
     </ClCompile>
+    <ClCompile Include="Task_020.cpp">
+      <Filter>Исходные файлы\Week4</Filter>
+    </ClCompile>
+    <ClCompile Include="Week4.cpp">
+      <Filter>Исходные файлы\Week4</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="sum_reverse_sort.h">
