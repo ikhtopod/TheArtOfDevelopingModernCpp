@@ -5,6 +5,7 @@
 #include <vector>
 #include <string>
 #include <utility>
+#include <stack>
 
 enum class ArithmeticOperator : uint8_t {
 	NONE,
@@ -12,20 +13,21 @@ enum class ArithmeticOperator : uint8_t {
 	ADD, SUB,
 };
 
+struct Operation {
+	ArithmeticOperator oper = ArithmeticOperator::NONE;
+	int number = 0;
+};
+
 class ArithmeticExpression {
 private:
-	std::vector<std::pair<ArithmeticOperator, int>> m_operations {};
+	std::stack<Operation> m_operations {};
 	std::string m_expression {};
 
 private:
-	void Generate() {
-		m_expression = std::to_string(m_operations.front().second);
-
-		for (auto it = std::next(std::begin(m_operations)); it != std::end(m_operations); std::advance(it, 1)) {
-			auto prev_it = std::prev(it);
-			m_expression = std::string("(") + m_expression + ") " +
-				GetCharByArithmeticOperator(it->first) + " " + std::to_string(it->second);
-		}
+	void NextGenerate() {
+		m_expression = std::string("(") + m_expression + ") " +
+			GetCharByArithmeticOperator(m_operations.top().oper) +
+			" " + std::to_string(m_operations.top().number);
 	}
 
 	static ArithmeticOperator GetArithmeticOperatorByChar(char c) {
@@ -60,11 +62,8 @@ private:
 
 public:
 	ArithmeticExpression(int operation) {
-		AddOperation(operation);
-	}
-
-	void AddOperation(int number) {
-		AddOperation(ArithmeticOperator::NONE, number);
+		m_operations.push(Operation { ArithmeticOperator::NONE, operation });
+		m_expression = std::to_string(m_operations.top().number);
 	}
 
 	void AddOperation(char operator_, int number) {
@@ -72,8 +71,8 @@ public:
 	}
 
 	void AddOperation(ArithmeticOperator ao, int number) {
-		m_operations.push_back(std::pair { ao, number });
-		Generate();
+		m_operations.push(Operation { ao, number });
+		NextGenerate();
 	}
 
 	std::string GetExpression() const {
