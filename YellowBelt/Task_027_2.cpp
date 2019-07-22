@@ -1,106 +1,50 @@
 #include <cstdlib>
 #include <iostream>
-#include <numeric>
-#include <iterator>
 #include <vector>
 #include <string>
 #include <utility>
+#include <iterator>
 
-enum class ArithmeticOperator : uint8_t {
-	NONE,
-	MUL, DIV,
-	ADD, SUB,
-};
+bool HasBraket(char start, char next) {
+	return (start == '*' || start == '/') && (next == '+' || next == '-');
+}
 
-class ArithmeticExpression {
-private:
-	std::vector<std::pair<ArithmeticOperator, int>> m_operations {};
-	std::string m_expression {};
+template <typename RIter>
+void PrintExpression(RIter start, RIter finish, bool hasBraket = false) {
+	if (hasBraket) std::cout << '(';
 
-private:
-	void Generate() {
-		m_expression = std::to_string(m_operations.front().second);
+	if (start != finish) {
+		auto next = std::next(start);
 
-		for (auto it = std::next(std::begin(m_operations)); it != std::end(m_operations); std::advance(it, 1)) {
-			auto prev_it = std::prev(it);
-
-			if (it->first <= prev_it->first) {
-				m_expression = std::string("(") + m_expression + ")";
+		if (next == finish) {
+			std::cout << start->second;
+		} else {
+			if (std::next(next) == finish) {
+				PrintExpression(next, finish);
+			} else {
+				PrintExpression(next, finish, HasBraket(start->first, next->first));
 			}
 
-			m_expression += std::string(" ") + GetCharByArithmeticOperator(it->first) + " " + std::to_string(it->second);
+			std::cout << ' ' << start->first << ' ' << start->second;
 		}
 	}
 
-	static ArithmeticOperator GetArithmeticOperatorByChar(char c) {
-		switch (c) {
-			case '*':
-				return ArithmeticOperator::MUL;
-			case '/':
-				return ArithmeticOperator::DIV;
-			case '+':
-				return ArithmeticOperator::ADD;
-			case '-':
-				return ArithmeticOperator::SUB;
-			default:
-				return ArithmeticOperator::NONE;
-		}
-	}
-
-	static char GetCharByArithmeticOperator(ArithmeticOperator ao) {
-		switch (ao) {
-			case ArithmeticOperator::MUL:
-				return '*';
-			case ArithmeticOperator::DIV:
-				return '/';
-			case ArithmeticOperator::ADD:
-				return '+';
-			case ArithmeticOperator::SUB:
-				return '-';
-			default:
-				return ' ';
-		}
-	}
-
-public:
-	ArithmeticExpression(int operation) {
-		AddOperation(operation);
-	}
-
-	void AddOperation(int number) {
-		AddOperation(ArithmeticOperator::NONE, number);
-	}
-
-	void AddOperation(char operator_, int number) {
-		AddOperation(GetArithmeticOperatorByChar(operator_), number);
-	}
-
-	void AddOperation(ArithmeticOperator ao, int number) {
-		m_operations.push_back(std::pair { ao, number });
-		Generate();
-	}
-
-	std::string GetExpression() const {
-		return m_expression;
-	}
-};
-
+	if (hasBraket) std::cout << ')';
+}
 
 int main() {
-	int x;
+	std::vector<std::pair<char, int>> operations(1);
+
 	size_t n = 0;
-	std::cin >> x >> n;
+	std::cin >> operations.front().second >> n;
+	operations.front().first = '+';
 
-	ArithmeticExpression ae { x };
-
-	for (size_t i = 0; i < n; ++i) {
-		char c; int num;
-		std::cin >> c >> num;
-
-		ae.AddOperation(c, num);
+	operations.resize(n + 1);
+	for (auto it = std::next(std::begin(operations)); it != std::end(operations); std::advance(it, 1)) {
+		std::cin >> it->first >> it->second;
 	}
 
-	std::cout << ae.GetExpression() << std::endl;
+	PrintExpression(std::rbegin(operations), std::rend(operations));
 
 	return EXIT_SUCCESS;
 }
