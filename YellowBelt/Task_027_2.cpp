@@ -45,7 +45,7 @@ int main() {
 		result.push_back(sstr.str());
 		if (hasBracket) result.push_back(")");
 
-		std::advance(prev, 1);
+		prev = start;
 		std::advance(start, 1);
 	}
 
