@@ -7,8 +7,8 @@
 #include <iterator>
 #include <sstream>
 
-bool HasBracket(char prev, char start) {
-	return (prev == '+' || prev == '-') && (start == '*' || start == '/');
+inline bool HasBracket(char first, char second) {
+	return (first == '+' || first == '-') && (second == '*' || second == '/');
 }
 
 int main() {
@@ -26,17 +26,18 @@ int main() {
 	std::deque<std::string> result {};
 	result.push_back(std::to_string(operations.front().second));
 
-	bool hasBracket = false;
 
-	auto prev = std::cbegin(operations);
-	auto start = std::next(prev);
+	auto start = std::next(std::cbegin(operations));
 	const auto finish = std::cend(operations);
 
+	bool hasBracket = false;
 	while (start != finish) {
-		if (HasBracket(prev->first, start->first) || std::next(start) == finish) {
-			if (hasBracket) hasBracket = false;
+		auto next = std::next(start);
+
+		if (next == finish) {
+			hasBracket = false;
 		} else {
-			if (!hasBracket) hasBracket = true;
+			hasBracket = HasBracket(start->first, next->first);
 		}
 
 		if (hasBracket) result.push_front("(");
@@ -45,7 +46,6 @@ int main() {
 		result.push_back(sstr.str());
 		if (hasBracket) result.push_back(")");
 
-		prev = start;
 		std::advance(start, 1);
 	}
 
