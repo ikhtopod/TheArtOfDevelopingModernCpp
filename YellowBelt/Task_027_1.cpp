@@ -2,27 +2,9 @@
 #include <iostream>
 #include <vector>
 #include <string>
+#include <deque>
 #include <utility>
-#include <iterator>
-
-
-template <typename RIter>
-void PrintExpression(RIter start, RIter finish, bool hasBraket = true) {
-	if (hasBraket) std::cout << '(';
-
-	if (start != finish) {
-		auto next = std::next(start);
-
-		if (next == finish) {
-			std::cout << start->second;
-		} else {
-			PrintExpression(next, finish);
-			std::cout << ' ' << start->first << ' ' << start->second;
-		}
-	}
-
-	if (hasBraket) std::cout << ')';
-}
+#include <sstream>
 
 int main() {
 	std::vector<std::pair<char, int>> operations(1);
@@ -36,7 +18,32 @@ int main() {
 		std::cin >> it->first >> it->second;
 	}
 
-	PrintExpression(std::rbegin(operations), std::rend(operations), false);
+	std::deque<std::string> result {};
+	result.push_back(std::to_string(operations.front().second));
+	if (operations.size() > 1) {
+		result.push_front("(");
+		result.push_back(")");
+	}
+
+	bool hasBracket = true;
+	const auto finish = std::cend(operations);
+	for (auto start = std::next(std::cbegin(operations)); start != finish; std::advance(start, 1)) {
+		if (std::next(start) == finish) {
+			if (hasBracket) hasBracket = false;
+		} else {
+			if (!hasBracket) hasBracket = true;
+		}
+
+		if (hasBracket) result.push_front("(");
+		std::stringstream sstr {};
+		sstr << ' ' << start->first << ' ' << start->second;
+		result.push_back(sstr.str());
+		if (hasBracket) result.push_back(")");
+	}
+
+	for (const auto& r : result) {
+		std::cout << r;
+	}
 
 	return EXIT_SUCCESS;
 }
