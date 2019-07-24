@@ -37,6 +37,9 @@
     <Filter Include="Исходные файлы\Week5">
       <UniqueIdentifier>{b9d3135f-ed41-4c92-9628-d894f115001a}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Исходные файлы\Week6">
+      <UniqueIdentifier>{87ad9efc-0273-4b9c-9f5e-5359173eec7b}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Week1.cpp">
