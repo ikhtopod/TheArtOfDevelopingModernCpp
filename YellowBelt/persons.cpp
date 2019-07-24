@@ -6,7 +6,7 @@ using namespace std;
 
 
 class Person {
-public:
+protected:
 	string m_name;
 	string m_profession;
 
@@ -17,29 +17,9 @@ public:
 	virtual void Walk(const string& destination) const {
 		cout << m_profession << ": " << m_name << " walks to: " << destination << endl;
 	}
-};
 
-
-class Student : public Person {
-public:
-	string m_favouriteSong;
-
-public:
-	explicit Student(const string& name, string favouriteSong) :
-		Person(name, "Student"), m_favouriteSong(favouriteSong) {}
-
-	void Learn() const {
-		cout << m_profession << ": " << m_name << " learns" << endl;
-	}
-
-	void SingSong() const {
-		cout << m_profession << ": " << m_name << " sings a song: " << m_favouriteSong << endl;
-	}
-
-	virtual void Walk(const string& destination) const override {
-		Person::Walk(destination);
-		SingSong();
-	}
+	string GetName() const { return m_name; }
+	string GetProfession() const { return m_profession; }
 };
 
 
@@ -59,11 +39,35 @@ public:
 
 class Policeman : public Person {
 public:
-	explicit Policeman(const string& name) : Person(name, "Policeman") {}
+	explicit Policeman(const string& name) : 
+		Person(name, "Policeman") {}
 
 	void Check(const Person& h) const {
-		cout << m_profession << ": " << m_name << " checks " << h.m_profession << ". " <<
-			h.m_profession << "'s name is: " << h.m_name << endl;
+		cout << m_profession << ": " << m_name << " checks " << h.GetProfession() << ". " <<
+			h.GetProfession() << "'s name is: " << h.GetName() << endl;
+	}
+};
+
+
+class Student : public Person {
+private:
+	string m_favouriteSong;
+
+public:
+	explicit Student(const string& name, string favouriteSong) :
+		Person(name, "Student"), m_favouriteSong(favouriteSong) {}
+
+	virtual void Walk(const string& destination) const override {
+		Person::Walk(destination);
+		SingSong();
+	}
+
+	void Learn() const {
+		cout << m_profession << ": " << m_name << " learns" << endl;
+	}
+
+	void SingSong() const {
+		cout << m_profession << ": " << m_name << " sings a song: " << m_favouriteSong << endl;
 	}
 };
 
