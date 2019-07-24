@@ -72,9 +72,9 @@ public:
 };
 
 
-void VisitPlaces(const Person& t, const vector<string>& places) {
-	for (const auto& p : places) {
-		t.Walk(p);
+void VisitPlaces(const Person& p, const vector<string>& places) {
+	for (const auto& place : places) {
+		p.Walk(place);
 	}
 }
 
