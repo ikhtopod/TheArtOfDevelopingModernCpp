@@ -4,92 +4,85 @@
 
 using namespace std;
 
-class Human {
+
+class Person {
 public:
 	string m_name;
+	string m_profession;
 
 public:
-	Human(const std::string& name) : m_name(name) {}
+	explicit Person(const std::string& name, const std::string& profession) :
+		m_name(name), m_profession(profession) {}
 
-	virtual void Walk(const string& destination) const = 0;
+	virtual void Walk(const string& destination) const {
+		cout << m_profession << ": " << m_name << " walks to: " << destination << endl;
+	}
 };
 
-class Student : public Human {
+
+class Student : public Person {
 public:
 	string m_favouriteSong;
 
 public:
-	Student(const string& name, string favouriteSong) :
-		Human(name), m_favouriteSong(favouriteSong) {}
+	explicit Student(const string& name, string favouriteSong) :
+		Person(name, "Student"), m_favouriteSong(favouriteSong) {}
 
-	void Learn() {
-		cout << "Student: " << m_name << " learns" << endl;
+	void Learn() const {
+		cout << m_profession << ": " << m_name << " learns" << endl;
 	}
 
-	void SingSong() {
-		cout << "Student: " << m_name << " sings a song: " << m_favouriteSong << endl;
+	void SingSong() const {
+		cout << m_profession << ": " << m_name << " sings a song: " << m_favouriteSong << endl;
 	}
 
-	virtual void Walk(const string& destination) const {
-		cout << "Student: " << m_name << " walks to: " << destination << endl;
-		cout << "Student: " << m_name << " sings a song: " << m_favouriteSong << endl;
+	virtual void Walk(const string& destination) const override {
+		Person::Walk(destination);
+		SingSong();
 	}
 };
 
 
-class Teacher : public Human {
+class Teacher : public Person {
 public:
 	string m_subject;
 
 public:
-	Teacher(const string& name, string subject) :
-		Human(name), m_subject(subject) {}
+	explicit Teacher(const string& name, const string& subject) :
+		Person(name, "Teacher"), m_subject(subject) {}
 
-	void Teach() {
-		cout << "Teacher: " << m_name << " teaches: " << m_subject << endl;
-	}
-
-	virtual void Walk(const string& destination) const {
-		cout << "Teacher: " << m_name << " walks to: " << destination << endl;
+	void Teach() const {
+		cout << m_profession << ": " << m_name << " teaches: " << m_subject << endl;
 	}
 };
 
 
-class Policeman : public Human {
+class Policeman : public Person {
 public:
-	Policeman(const string& name) : Human(name) {}
+	explicit Policeman(const string& name) : Person(name, "Policeman") {}
 
-	void Check(Teacher t) {
-		cout << "Policeman: " << m_name << " checks Teacher. Teacher's name is: " << t.m_name << endl;
-	}
-
-	void Check(Student s) {
-		cout << "Policeman: " << m_name << " checks Student. Student's name is: " << s.m_name << endl;
-	}
-
-	void Check(Policeman p) {
-		cout << "Policeman: " << m_name << " checks Policeman. Policeman's name is: " << p.m_name << endl;
-	}
-
-	virtual void Walk(const string& destination) const {
-		cout << "Policeman: " << m_name << " walks to: " << destination << endl;
+	void Check(const Person& h) const {
+		cout << m_profession << ": " << m_name << " checks " << h.m_profession << ". " <<
+			h.m_profession << "'s name is: " << h.m_name << endl;
 	}
 };
 
 
-void VisitPlaces(const Human& t, const vector<string>& places) {
-	for (auto p : places) {
+void VisitPlaces(const Person& t, const vector<string>& places) {
+	for (const auto& p : places) {
 		t.Walk(p);
 	}
 }
 
+
 int main() {
-	Teacher t("Jim", "Math");
-	Student s("Ann", "We will rock you");
-	Policeman p("Bob");
+	Teacher t { "Jim", "Math" };
+	Student s { "Ann", "We will rock you" };
+	Policeman p { "Bob" };
 
 	VisitPlaces(t, { "Moscow", "London" });
 	p.Check(s);
 	VisitPlaces(s, { "Moscow", "London" });
+
 	return 0;
 }
