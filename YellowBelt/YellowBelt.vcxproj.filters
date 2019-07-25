@@ -40,6 +40,9 @@
     <Filter Include="Исходные файлы\Week6">
       <UniqueIdentifier>{87ad9efc-0273-4b9c-9f5e-5359173eec7b}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Файлы заголовков\Week6">
+      <UniqueIdentifier>{3ef87791-e3d6-40d7-b1eb-fd25554aeffa}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Week1.cpp">
@@ -92,18 +95,6 @@
     </ClCompile>
     <ClCompile Include="rectangle.cpp">
       <Filter>Исходные файлы\Week2</Filter>
-    </ClCompile>
-    <ClCompile Include="query.cpp">
-      <Filter>Исходные файлы\Week2\Task_016</Filter>
-    </ClCompile>
-    <ClCompile Include="responses.cpp">
-      <Filter>Исходные файлы\Week2\Task_016</Filter>
-    </ClCompile>
-    <ClCompile Include="bus_manager.cpp">
-      <Filter>Исходные файлы\Week2\Task_016</Filter>
-    </ClCompile>
-    <ClCompile Include="main.cpp">
-      <Filter>Исходные файлы\Week2\Task_016</Filter>
     </ClCompile>
     <ClCompile Include="Week3.cpp">
       <Filter>Исходные файлы\Week3</Filter>
@@ -168,6 +159,27 @@
     <ClCompile Include="persons.cpp">
       <Filter>Исходные файлы\Week5</Filter>
     </ClCompile>
+    <ClCompile Include="condition_parser.cpp">
+      <Filter>Исходные файлы\Week6</Filter>
+    </ClCompile>
+    <ClCompile Include="token.cpp">
+      <Filter>Исходные файлы\Week6</Filter>
+    </ClCompile>
+    <ClCompile Include="Task_016\bus_manager.cpp">
+      <Filter>Исходные файлы\Week2\Task_016</Filter>
+    </ClCompile>
+    <ClCompile Include="Task_016\main.cpp">
+      <Filter>Исходные файлы\Week2\Task_016</Filter>
+    </ClCompile>
+    <ClCompile Include="Task_016\query.cpp">
+      <Filter>Исходные файлы\Week2\Task_016</Filter>
+    </ClCompile>
+    <ClCompile Include="Task_016\responses.cpp">
+      <Filter>Исходные файлы\Week2\Task_016</Filter>
+    </ClCompile>
+    <ClCompile Include="main.cpp">
+      <Filter>Исходные файлы\Week6</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="sum_reverse_sort.h">
@@ -179,18 +191,24 @@
     <ClInclude Include="rectangle.h">
       <Filter>Файлы заголовков\Week2</Filter>
     </ClInclude>
-    <ClInclude Include="query.h">
+    <ClInclude Include="condition_parser.h">
+      <Filter>Файлы заголовков\Week6</Filter>
+    </ClInclude>
+    <ClInclude Include="token.h">
+      <Filter>Файлы заголовков\Week6</Filter>
+    </ClInclude>
+    <ClInclude Include="Task_016\query.h">
       <Filter>Файлы заголовков\Week2\Task_016</Filter>
     </ClInclude>
-    <ClInclude Include="responses.h">
+    <ClInclude Include="Task_016\responses.h">
       <Filter>Файлы заголовков\Week2\Task_016</Filter>
     </ClInclude>
-    <ClInclude Include="bus_manager.h">
+    <ClInclude Include="Task_016\bus_manager.h">
       <Filter>Файлы заголовков\Week2\Task_016</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Task_016.zip">
+    <None Include="Task_016\Task_016.zip">
       <Filter>Файлы ресурсов</Filter>
     </None>
   </ItemGroup>
