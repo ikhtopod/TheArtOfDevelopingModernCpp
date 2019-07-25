@@ -1,7 +1,7 @@
 #pragma once
 
-#ifndef ru_LIFANOFF_UTEST_TEST_RUNNER_H
-#define ru_LIFANOFF_UTEST_TEST_RUNNER_H
+#ifndef RU_LIFANOFF_UTEST_TEST_RUNNER_H
+#define RU_LIFANOFF_UTEST_TEST_RUNNER_H
 
 #include <cstdlib>
 #include <functional>
@@ -141,4 +141,4 @@ public:
 
 }//! namespace ru::lifanoff::utest
 
-#endif // !ru_LIFANOFF_UTEST_TEST_RUNNER_H
+#endif // !RU_LIFANOFF_UTEST_TEST_RUNNER_H
