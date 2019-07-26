@@ -195,6 +195,12 @@
     <ClCompile Include="condition_parser_test.cpp">
       <Filter>Исходные файлы\Week6\test</Filter>
     </ClCompile>
+    <ClCompile Include="bd_exception.cpp">
+      <Filter>Исходные файлы\Week6</Filter>
+    </ClCompile>
+    <ClCompile Include="event.cpp">
+      <Filter>Исходные файлы\Week6</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="sum_reverse_sort.h">
@@ -229,6 +235,12 @@
     </ClInclude>
     <ClInclude Include="node.h">
       <Filter>Файлы заголовков\Week6</Filter>
+    </ClInclude>
+    <ClInclude Include="bd_exception.h">
+      <Filter>Файлы заголовков\Week6</Filter>
+    </ClInclude>
+    <ClInclude Include="event.h">
+      <Filter>Файлы заголовков</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

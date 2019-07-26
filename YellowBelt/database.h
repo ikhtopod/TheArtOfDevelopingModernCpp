@@ -2,14 +2,20 @@
 
 #include <iostream>
 #include <string>
-#include <functional>
+#include <map>
 
 #include "date.h"
+#include "event.h"
 
 class Database {
+private:
+	std::map<Date, Events> m_db {};
+
 public:
-	void Add(Date, std::string);
-	std::string Last(Date);
+	void Add(Date date, std::string event);
+	void Add(Date date, Event event);
+
+	std::string Last(Date date);
 	void Print(std::ostream& os);
 
 	template<typename Pred>

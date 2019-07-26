@@ -127,10 +127,12 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="bd_exception.cpp" />
     <ClCompile Include="condition_parser.cpp" />
     <ClCompile Include="condition_parser_test.cpp" />
     <ClCompile Include="database.cpp" />
     <ClCompile Include="date.cpp" />
+    <ClCompile Include="event.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="node.cpp" />
     <ClCompile Include="phone_number.cpp">
@@ -262,9 +264,11 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="bd_exception.h" />
     <ClInclude Include="condition_parser.h" />
     <ClInclude Include="database.h" />
     <ClInclude Include="date.h" />
+    <ClInclude Include="event.h" />
     <ClInclude Include="node.h" />
     <ClInclude Include="phone_number.h">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>

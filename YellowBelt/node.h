@@ -1,8 +1,10 @@
 #pragma once
 
 #include <string>
+#include <memory>
 
 #include "date.h"
+#include "event.h"
 
 enum class Comparison {
 	NotEqual, Equal,
@@ -16,21 +18,26 @@ enum class LogicalOperation {
 
 class Node {
 public:
-	bool Evaluate(Date, std::string);
+	bool Evaluate(Date date, std::string event);
+	bool Evaluate(Date date, Event event);
 };
 
-class EmptyNode {
-
+class EmptyNode : public Node {
+public:
+	EmptyNode() = default;
 };
 
-class DateComparisonNode {
-
+class DateComparisonNode : public Node {
+public:
+	DateComparisonNode(Comparison, Date);
 };
 
-class EventComparisonNode {
-
+class EventComparisonNode : public Node {
+public:
+	EventComparisonNode(Comparison, std::string);
 };
 
-class LogicalOperationNode {
-
+class LogicalOperationNode : public Node {
+public:
+	LogicalOperationNode(LogicalOperation, std::shared_ptr<Node>, std::shared_ptr<Node>);
 };
