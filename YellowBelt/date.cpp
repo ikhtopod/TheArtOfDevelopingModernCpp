@@ -8,6 +8,10 @@ void Date::checkValidityDate() {
 	}
 }
 
+int Date::GetAllDays() const {
+	return m_day + (m_month * MAX_DAY) + (m_year * MAX_MONTH);
+}
+
 Date::Date() : Date(0, 0, 0) {}
 Date::Date(int day, int month, int year) :
 	m_day(day), m_month(month), m_year(year) {}
@@ -16,26 +20,50 @@ int Date::GetDay() const { return m_day; }
 int Date::GetMonth() const { return m_month; }
 int Date::GetYear() const { return m_year; }
 
+bool Date::operator==(const Date& rhs) const {
+	if (this == &rhs) return true;
+
+	return (m_year == rhs.m_year) &&
+		(m_month == rhs.m_month) &&
+		(m_day == rhs.m_day);
+}
+
 bool Date::operator<(const Date& rhs) const {
-	if (m_year < rhs.m_year) {
-		return true;
-	} else if (m_year > rhs.m_year) {
-		return false;
-	}//fi year
+	if (this == &rhs) return false;
 
-	if (m_month < rhs.m_month) {
-		return true;
-	} else if (m_month > rhs.m_month) {
-		return false;
-	}//fi month
+	if (m_year != rhs.m_year) {
+		return m_year < rhs.m_year;
+	}
 
-	if (m_day < rhs.m_day) {
-		return true;
-	} else if (m_day > rhs.m_day) {
-		return false;
-	}//fi day
+	if (m_month != rhs.m_month) {
+		return m_month < rhs.m_month;
+	}
+
+	if (m_day != rhs.m_day) {
+		return m_day < rhs.m_day;
+	}
 
 	return false;
+}
+
+bool Date::operator!=(const Date& rhs) const {
+	return !(*this == rhs);
+}
+
+bool Date::operator<=(const Date& rhs) const {
+	return !(rhs < *this);
+}
+
+bool Date::operator>(const Date& rhs) const {
+	return rhs < *this;
+}
+
+bool Date::operator>=(const Date& rhs) const {
+	return !(*this < rhs);
+}
+
+int Date::operator-(const Date& rhs) const {
+	return GetAllDays() - rhs.GetAllDays();
 }
 
 void Date::reset() {

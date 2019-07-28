@@ -9,16 +9,22 @@ private:
 	std::string m_event {};
 
 public:
-	explicit Event();
-	explicit Event(std::string event);
+	Event();
+	Event(const std::string& event);
 
-	bool operator<(const Event& rhs) const;
 	bool operator==(const Event& rhs) const;
+	bool operator<(const Event& rhs) const;
+	// Based on operators equal and less.
+	bool operator!=(const Event& rhs) const;
+	bool operator<=(const Event& rhs) const;
+	bool operator>(const Event& rhs) const;
+	bool operator>=(const Event& rhs) const;
 
 	friend std::ostream& operator<<(std::ostream& lhs, const Event& rhs);
 	friend std::istream& operator>>(std::istream& lhs, Event& rhs);
 
-	bool isEmpty() const;
+	std::string GetValue() const;
+	bool IsEmpty() const;
 };
 
 class Events {

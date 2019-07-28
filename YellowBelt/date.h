@@ -21,16 +21,25 @@ private:
 
 private:
 	void checkValidityDate();
+	int GetAllDays() const;
 
 public:
-	explicit Date();
-	explicit Date(int day, int month, int year);
+	Date();
+	Date(int day, int month, int year);
 
 	int GetDay() const;
 	int GetMonth() const;
 	int GetYear() const;
 
+	bool operator==(const Date& rhs) const;
 	bool operator<(const Date& rhs) const;
+	// Based on operators equal and less.
+	bool operator!=(const Date& rhs) const;
+	bool operator<=(const Date& rhs) const;
+	bool operator>(const Date& rhs) const;
+	bool operator>=(const Date& rhs) const;
+	
+	int operator-(const Date& rhs) const;
 
 	void reset();
 
