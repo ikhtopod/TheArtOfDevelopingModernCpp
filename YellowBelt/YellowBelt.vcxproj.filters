@@ -240,11 +240,14 @@
       <Filter>Файлы заголовков\Week6</Filter>
     </ClInclude>
     <ClInclude Include="event.h">
-      <Filter>Файлы заголовков</Filter>
+      <Filter>Файлы заголовков\Week6</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="Task_016\Task_016.zip">
+      <Filter>Файлы ресурсов</Filter>
+    </None>
+    <None Include="final_project.zip">
       <Filter>Файлы ресурсов</Filter>
     </None>
   </ItemGroup>
