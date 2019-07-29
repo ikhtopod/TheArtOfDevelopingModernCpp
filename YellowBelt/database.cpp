@@ -6,7 +6,7 @@ Date ParseDate(std::istream& is) {
 	return date;
 }
 
-Database::MapCIter Database::FindNearestDate(const Date& date) {
+Database::MapCIter Database::FindNearestDate(const Date& date) const {
 	if (m_db.empty()) return std::cend(m_db);
 
 	if (m_db.size() == 1) {
@@ -52,15 +52,11 @@ Database::MapCIter Database::FindNearestDate(const Date& date) {
 	}
 }
 
-void Database::Add(const Date& date, const std::string& event) {
-	Add(date, Event { event });
-}
-
 void Database::Add(const Date& date, const Event& event) {
 	m_db[date].Add(event);
 }
 
-std::string Database::Last(const Date& date) {
+std::string Database::Last(const Date& date) const {
 	MapCIter nearestDateIt = FindNearestDate(date);
 
 	if (nearestDateIt == std::cend(m_db)) {
@@ -72,17 +68,59 @@ std::string Database::Last(const Date& date) {
 	if (entries.empty()) {
 		throw std::invalid_argument { "" };
 	}
-	
+
 	std::ostringstream sstr {};
 	sstr << nearestDateIt->first << " " << entries.back().GetValue();
 
 	return sstr.str();
 }
 
-void Database::Print(std::ostream& os) {
+void Database::Print(std::ostream& os) const {
 	for (const auto& [date, events] : m_db) {
 		for (const auto& event : events.GetValue()) {
 			os << date << " " << event << std::endl;
 		}//rof
 	}//rof
+}
+
+std::vector<std::string> Database::FindIf(std::function<bool(Date, std::string)> pred) const {
+	std::vector<std::string> entries {};
+	std::ostringstream ostr {};
+
+	for (const auto& [date, events] : m_db) {
+		for (const auto& event : events.GetValue()) {
+			if (pred(date, event.GetValue())) {
+				ostr.str("");
+				ostr << date << " " << event.GetValue();
+				entries.push_back(ostr.str());
+			}
+		}
+	}
+
+	return entries;
+}
+
+int Database::RemoveIf(std::function<bool(Date, std::string)> pred) {
+	int totalOfDeletedEvents = 0;
+
+	std::vector<Date> datesForErase {};
+
+	for (const auto& [date, events] : m_db) {
+		for (const auto& event : events.GetValue()) {
+			if (pred(date, event.GetValue())) {
+				m_db.at(date).Del(event);
+				totalOfDeletedEvents++;
+			}
+		}
+
+		if (m_db.at(date).GetValue().empty()) {
+			datesForErase.push_back(date);
+		}
+	}
+
+	for (const Date& d : datesForErase) {
+		m_db.erase(d);
+	}
+
+	return totalOfDeletedEvents;
 }

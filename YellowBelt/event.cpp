@@ -3,6 +3,7 @@
 /* Event */
 
 Event::Event() : Event("") {}
+Event::Event(const char* event) : Event(std::string { event }) {}
 Event::Event(const std::string& event) : m_event(event) {}
 
 bool Event::operator==(const Event& rhs) const {

@@ -2,6 +2,7 @@
 
 #include <stdexcept>
 #include <algorithm>
+#include <functional>
 #include <iostream>
 #include <string>
 #include <sstream>
@@ -17,58 +18,18 @@ private:
 
 protected:
 	using MapCIter = std::map<Date, Events>::const_iterator;
-	MapCIter FindNearestDate(const Date& date);
+
+	MapCIter FindNearestDate(const Date& date) const;
 
 public:
-	void Add(const Date& date, const std::string& event);
 	void Add(const Date& date, const Event& event);
 
-	std::string Last(const Date& date);
-	void Print(std::ostream& os);
+	std::string Last(const Date& date) const;
+	void Print(std::ostream& os) const;
 
-	template<typename Pred>
-	std::vector<std::string> FindIf(Pred& pred) {
-		std::vector<std::string> entries {};
-		std::ostringstream ostr {};
+	std::vector<std::string> FindIf(std::function<bool(Date, std::string)> pred) const;
 
-		for (const auto& [date, events] : m_db) {
-			for (const auto& event : events.GetValue()) {
-				if (pred(date, event.GetValue())) {
-					ostr.str("");
-					ostr << date << " " << event.GetValue();
-					entries.push_back(ostr.str());
-				}
-			}
-		}
-
-		return entries;
-	}
-
-	template<typename Pred>
-	int RemoveIf(Pred& pred) {
-		int totalOfDeletedEvents = 0;
-
-		std::vector<Date> datesForErase {};
-
-		for (const auto& [date, events] : m_db) {
-			for (const auto& event : events.GetValue()) {
-				if (pred(date, event.GetValue())) {
-					m_db.at(date).Del(event);
-					totalOfDeletedEvents++;
-				}
-			}
-
-			if (m_db.at(date).GetValue().empty()) {
-				datesForErase.push_back(date);
-			}
-		}
-
-		for (const Date& d : datesForErase) {
-			m_db.erase(d);
-		}
-
-		return totalOfDeletedEvents;
-	}
+	int RemoveIf(std::function<bool(Date, std::string)> pred);
 };
 
 Date ParseDate(std::istream& is);

@@ -1,12 +1,5 @@
 #include "node.h"
 
-/* Node */
-
-bool Node::Evaluate(const Date& date, const std::string& event) {
-	return Evaluate(date, Event { event });
-}
-
-
 /* EmptyNode */
 
 bool EmptyNode::Evaluate(const Date& date, const Event& event) {
@@ -25,10 +18,6 @@ bool DateComparisonNode::Evaluate(const Date& date, const Event& event) {
 
 
 /* EventComparisonNode */
-
-EventComparisonNode::EventComparisonNode(const Comparison& comparison, const std::string& event) :
-	EventComparisonNode(comparison, Event { event }) {}
-
 
 EventComparisonNode::EventComparisonNode(const Comparison& comparison, const Event& event) :
 	m_comparison(comparison), m_event(event) {}

@@ -1,5 +1,6 @@
 #pragma once
 
+#include <algorithm>
 #include <iostream>
 #include <string>
 #include <vector>
@@ -11,6 +12,7 @@ private:
 
 public:
 	Event();
+	Event(const char* event);
 	Event(const std::string& event);
 
 	bool operator==(const Event& rhs) const;

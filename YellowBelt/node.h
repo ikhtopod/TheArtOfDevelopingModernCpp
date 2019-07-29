@@ -38,7 +38,6 @@ bool ComparisonEvaluate(const T& lhs, const Comparison& comparison, const T& rhs
 
 class Node {
 public:
-	virtual bool Evaluate(const Date& date, const std::string& event);
 	virtual bool Evaluate(const Date& date, const Event& event) = 0;
 };
 
@@ -66,7 +65,6 @@ private:
 	Event m_event {};
 
 public:
-	EventComparisonNode(const Comparison& comparison, const std::string& event);
 	EventComparisonNode(const Comparison& comparison, const Event& event);
 
 	virtual bool Evaluate(const Date& date, const Event& event) override;
