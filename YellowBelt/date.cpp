@@ -8,17 +8,13 @@ void Date::checkValidityDate() {
 	}
 }
 
-int Date::GetAllDays() const {
-	return m_day + (m_month * MAX_DAY) + (m_year * MAX_MONTH);
-}
-
 Date::Date() : Date(0, 0, 0) {}
-Date::Date(int day, int month, int year) :
-	m_day(day), m_month(month), m_year(year) {}
+Date::Date(int year, int month, int day) :
+	m_year(year), m_month(month), m_day(day) {}
 
-int Date::GetDay() const { return m_day; }
-int Date::GetMonth() const { return m_month; }
 int Date::GetYear() const { return m_year; }
+int Date::GetMonth() const { return m_month; }
+int Date::GetDay() const { return m_day; }
 
 bool Date::operator==(const Date& rhs) const {
 	if (this == &rhs) return true;
@@ -60,10 +56,6 @@ bool Date::operator>(const Date& rhs) const {
 
 bool Date::operator>=(const Date& rhs) const {
 	return !(*this < rhs);
-}
-
-int Date::operator-(const Date& rhs) const {
-	return GetAllDays() - rhs.GetAllDays();
 }
 
 void Date::reset() {

@@ -14,9 +14,9 @@ using namespace ru::lifanoff::utest;
 #endif
 
 string ParseEvent(istream& is) {
-	string event {};
+	Event event {};
 	is >> event;
-	return event;
+	return event.GetValue();
 }
 
 void TestAll();

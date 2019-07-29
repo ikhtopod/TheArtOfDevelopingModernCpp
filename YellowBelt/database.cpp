@@ -9,24 +9,47 @@ Date ParseDate(std::istream& is) {
 Database::MapCIter Database::FindNearestDate(const Date& date) {
 	if (m_db.empty()) return std::cend(m_db);
 
-	auto lower = m_db.lower_bound(date);
+	if (m_db.size() == 1) {
+		auto sole = std::cbegin(m_db);
 
-	if (lower == std::cend(m_db)) {
-		return std::prev(std::cend(m_db));
-	} else if (lower == std::cbegin(m_db)) {
-		if (lower->first == date) {
-			return lower;
-		} else {
+		if (sole->first > date) {
 			return std::cend(m_db);
+		} else {
+			return sole;
 		}
 	}
 
-	auto prev_lower = std::prev(lower);
+	auto le = m_db.lower_bound(date);
 
-	int left_dist = date - prev_lower->first;
-	int right_dist = lower->first - date;
+	if (le == std::cbegin(m_db)) {
+		if (le->first > date) {
+			return std::cend(m_db);
+		} else {
+			return le;
+		}
+	}
 
-	return left_dist <= right_dist ? prev_lower : lower;
+	if (le == std::cend(m_db)) {
+		auto prev_lower = std::prev(le);
+
+		if (prev_lower->first > date) {
+			return std::cend(m_db);
+		} else {
+			return prev_lower;
+		}
+	}
+
+	if (le->first > date) {
+		auto prev_lower = std::prev(le);
+
+		if (prev_lower->first > date) {
+			return std::cend(m_db);
+		} else {
+			return prev_lower;
+		}
+	} else {
+		return le;
+	}
 }
 
 void Database::Add(const Date& date, const std::string& event) {
@@ -50,13 +73,17 @@ std::string Database::Last(const Date& date) {
 		throw std::invalid_argument { "" };
 	}
 
-	return std::crbegin(entries)->GetValue();
+	auto lastEventIt = std::crbegin(entries);
+	std::ostringstream sstr {};
+	sstr << nearestDateIt->first << " " << lastEventIt->GetValue();
+
+	return sstr.str();
 }
 
 void Database::Print(std::ostream& os) {
 	for (const auto& [date, events] : m_db) {
 		for (const auto& event : events.GetValue()) {
-			std::cout << date << " " << event << std::endl;
+			os << date << " " << event << std::endl;
 		}//rof
 	}//rof
 }

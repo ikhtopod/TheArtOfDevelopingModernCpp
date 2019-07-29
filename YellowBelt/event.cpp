@@ -39,7 +39,8 @@ std::ostream& operator<<(std::ostream& lhs, const Event& rhs) {
 
 std::istream& operator>>(std::istream& lhs, Event& rhs) {
 	rhs.m_event = "";
-	return std::getline(lhs, rhs.m_event); //lhs >> rhs.m_event;
+	lhs >> std::ws;
+	return std::getline(lhs, rhs.m_event);
 }
 
 std::string Event::GetValue() const {

@@ -15,17 +15,16 @@ private:
 	static const int MAX_DAY = 31;
 
 private:
-	int m_day {};
-	int m_month {};
 	int m_year {};
+	int m_month {};
+	int m_day {};
 
 private:
 	void checkValidityDate();
-	int GetAllDays() const;
 
 public:
 	Date();
-	Date(int day, int month, int year);
+	Date(int year, int month, int day);
 
 	int GetDay() const;
 	int GetMonth() const;
@@ -39,8 +38,6 @@ public:
 	bool operator>(const Date& rhs) const;
 	bool operator>=(const Date& rhs) const;
 	
-	int operator-(const Date& rhs) const;
-
 	void reset();
 
 	friend std::ostream& operator<<(std::ostream& lhs, const Date& rhs);

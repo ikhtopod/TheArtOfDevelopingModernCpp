@@ -10,7 +10,7 @@ bool Node::Evaluate(const Date& date, const std::string& event) {
 /* EmptyNode */
 
 bool EmptyNode::Evaluate(const Date& date, const Event& event) {
-	return false;
+	return true;
 }
 
 
@@ -20,7 +20,7 @@ DateComparisonNode::DateComparisonNode(const Comparison& comparison, const Date&
 	m_comparison(comparison), m_date(date) {}
 
 bool DateComparisonNode::Evaluate(const Date& date, const Event& event) {
-	return ComparisonEvaluate<Date>(m_date, m_comparison, date);
+	return ComparisonEvaluate<Date>(date, m_comparison, m_date);
 }
 
 
@@ -34,7 +34,7 @@ EventComparisonNode::EventComparisonNode(const Comparison& comparison, const Eve
 	m_comparison(comparison), m_event(event) {}
 
 bool EventComparisonNode::Evaluate(const Date& date, const Event& event) {
-	return ComparisonEvaluate<Event>(m_event, m_comparison, event);
+	return ComparisonEvaluate<Event>(event, m_comparison, m_event);
 }
 
 
