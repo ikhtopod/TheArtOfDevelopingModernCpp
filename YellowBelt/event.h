@@ -2,6 +2,7 @@
 
 #include <iostream>
 #include <string>
+#include <vector>
 #include <set>
 
 class Event {
@@ -29,14 +30,15 @@ public:
 
 class Events {
 private:
-	std::set<Event> m_events {};
+	std::set<Event> m_uniqueEvents {};
+	std::vector<Event> m_events {};
 
 public:
 	explicit Events() = default;
 	~Events();
 
-	std::set<Event> GetValue() const;
+	std::vector<Event> GetValue() const;
 
 	void Add(const Event& event);
-	bool Del(const Event& event);
+	void Del(const Event& event);
 };

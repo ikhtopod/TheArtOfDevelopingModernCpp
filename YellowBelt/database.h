@@ -7,7 +7,6 @@
 #include <sstream>
 #include <vector>
 #include <map>
-#include <set>
 
 #include "date.h"
 #include "event.h"
@@ -49,6 +48,8 @@ public:
 	int RemoveIf(Pred& pred) {
 		int totalOfDeletedEvents = 0;
 
+		std::vector<Date> datesForErase {};
+
 		for (const auto& [date, events] : m_db) {
 			for (const auto& event : events.GetValue()) {
 				if (pred(date, event.GetValue())) {
@@ -56,6 +57,14 @@ public:
 					totalOfDeletedEvents++;
 				}
 			}
+
+			if (m_db.at(date).GetValue().empty()) {
+				datesForErase.push_back(date);
+			}
+		}
+
+		for (const Date& d : datesForErase) {
+			m_db.erase(d);
 		}
 
 		return totalOfDeletedEvents;

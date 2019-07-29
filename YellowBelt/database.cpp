@@ -67,15 +67,14 @@ std::string Database::Last(const Date& date) {
 		throw std::invalid_argument { "" };
 	}
 
-	std::set<Event> entries = nearestDateIt->second.GetValue();
+	std::vector<Event> entries = nearestDateIt->second.GetValue();
 
 	if (entries.empty()) {
 		throw std::invalid_argument { "" };
 	}
-
-	auto lastEventIt = std::crbegin(entries);
+	
 	std::ostringstream sstr {};
-	sstr << nearestDateIt->first << " " << lastEventIt->GetValue();
+	sstr << nearestDateIt->first << " " << entries.back().GetValue();
 
 	return sstr.str();
 }

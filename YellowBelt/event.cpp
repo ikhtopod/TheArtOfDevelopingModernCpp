@@ -52,14 +52,26 @@ bool Event::IsEmpty() const { return m_event.empty(); }
 
 /* Events */
 
-Events::~Events() { m_events.clear(); }
-
-std::set<Event> Events::GetValue() const { return m_events; }
-
-void Events::Add(const Event& event) {
-	m_events.insert(event);
+Events::~Events() {
+	m_uniqueEvents.clear();
+	m_events.clear();
 }
 
-bool Events::Del(const Event& event) {
-	return static_cast<bool>(m_events.erase(event));
+std::vector<Event> Events::GetValue() const {
+	return m_events;
+}
+
+void Events::Add(const Event& event) {
+	if (m_uniqueEvents.count(event) != 0) {
+		return;
+	}
+
+	m_uniqueEvents.insert(event);
+	m_events.push_back(event);
+}
+
+void Events::Del(const Event& event) {
+	if (m_uniqueEvents.erase(event) != 0) {
+		m_events.erase(std::find(std::begin(m_events), std::end(m_events), event));
+	}
 }
