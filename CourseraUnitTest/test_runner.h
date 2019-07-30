@@ -31,11 +31,7 @@ std::ostream& operator<<(std::ostream& lhs, const std::map<Key, Value>& rhs);
 template <class T, class U>
 void AssertEqual(const T& t, const U& u, const std::string& hint);
 
-template <class T, class U>
-void AssertEqual(const T& t, const U& u);
-
 void Assert(bool b, const std::string& hint);
-void Assert(bool b);
 
 
 #pragma region namespace additional
@@ -96,23 +92,15 @@ std::ostream& operator<<(std::ostream& lhs, const std::map<Key, Value>& rhs) {
 	return lhs << '}';
 }
 
-
 template <class T, class U>
 void AssertEqual(const T& t, const U& u, const std::string& hint) {
 	if (t != u) {
 		std::ostringstream oss {};
-		oss << "Assertion failed: " <<
-			t << " != " << u <<
-			" hint: " << hint;
+		oss << "Assertion failed: " << t << " != " << u
+			<< ". Hint: " << hint;
 		throw std::runtime_error { oss.str() };
 	}//fi
 }
-
-template <class T, class U>
-void AssertEqual(const T& t, const U& u) {
-	AssertEqual(t, u, {});
-}
-
 
 class TestRunner final {
 private:
@@ -138,6 +126,23 @@ public:
 		}
 	}
 };
+
+#define ASSERT_EQUAL(x, y) {				\
+	std::ostringstream os {};				\
+	os << #x << " != " << #y << ", " <<		\
+		__FILE__ << ":" << __LINE__;		\
+	AssertEqual(x, y, os.str());			\
+} 
+
+#define ASSERT(x) {							\
+	std::ostringstream os {};				\
+	os << '!' << #x << ", " <<				\
+		__FILE__ << ":" << __LINE__;		\
+	Assert(x, os.str());			\
+} 
+
+#define INIT_TEST_RUNNER TestRunner tr {}
+#define TEST_RUN(tr, func) tr.RunTest(func, #func)
 
 }//! namespace ru::lifanoff::utest
 
