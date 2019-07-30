@@ -21,5 +21,8 @@
     <ClCompile Include="Week1.cpp">
       <Filter>Исходные файлы\Week1</Filter>
     </ClCompile>
+    <ClCompile Include="Task_001.cpp">
+      <Filter>Исходные файлы\Week1</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>
