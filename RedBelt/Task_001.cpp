@@ -82,8 +82,8 @@ void TestNoMax() {
 
 int main() {
 	TestRunner tr;
-	TEST_RUN(tr, TestUniqueMax);
-	TEST_RUN(tr, TestSeveralMax);
-	TEST_RUN(tr, TestNoMax);
+	RUN_TEST(tr, TestUniqueMax);
+	RUN_TEST(tr, TestSeveralMax);
+	RUN_TEST(tr, TestNoMax);
 	return 0;
 }

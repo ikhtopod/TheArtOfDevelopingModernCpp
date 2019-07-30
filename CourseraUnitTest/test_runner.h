@@ -142,7 +142,7 @@ public:
 } 
 
 #define INIT_TEST_RUNNER TestRunner tr {}
-#define TEST_RUN(tr, func) tr.RunTest(func, #func)
+#define RUN_TEST(tr, func) tr.RunTest(func, #func)
 
 }//! namespace ru::lifanoff::utest
 
