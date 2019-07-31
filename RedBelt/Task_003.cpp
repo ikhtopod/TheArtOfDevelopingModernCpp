@@ -1,6 +1,7 @@
 #include <iostream>
 #include <algorithm>
 #include <numeric>
+#include <tuple>
 
 #include "airline_ticket.h"
 #include "test_runner.h"
@@ -12,27 +13,19 @@ using namespace ru::lifanoff::utest;
 #endif;
 
 bool operator==(const Date& lhs, const Date& rhs) {
-	return (lhs.year == rhs.year) &&
-		(lhs.month == rhs.month) &&
-		(lhs.day == rhs.day);
+	return tie(lhs.year, lhs.month, lhs.day) == tie(rhs.year, rhs.month, rhs.day);
 }
 
 bool operator==(const Time& lhs, const Time& rhs) {
-	return (lhs.hours != rhs.hours) &&
-		(lhs.minutes != rhs.minutes);
+	return tie(lhs.hours, lhs.minutes) == tie(lhs.hours, lhs.minutes);
 }
 
 bool operator<(const Date& lhs, const Date& rhs) {
-	if (lhs.year != rhs.year) return lhs.year < rhs.year;
-	if (lhs.month != rhs.month) return lhs.month < rhs.month;
-	if (lhs.day != rhs.day) return lhs.day < rhs.day;
-	return false;
+	return tie(lhs.year, lhs.month, lhs.day) < tie(rhs.year, rhs.month, rhs.day);
 }
 
 bool operator<(const Time& lhs, const Time& rhs) {
-	if (lhs.hours != rhs.hours) return lhs.hours < rhs.hours;
-	if (lhs.minutes != rhs.minutes) return lhs.minutes < rhs.minutes;
-	return false;
+	return tie(lhs.hours, lhs.minutes) < tie(lhs.hours, lhs.minutes);
 }
 
 bool operator!=(const Date& lhs, const Date& rhs) {
@@ -42,6 +35,7 @@ bool operator!=(const Date& lhs, const Date& rhs) {
 bool operator!=(const Time& lhs, const Time& rhs) {
 	return !(lhs == rhs);
 }
+
 
 std::ostream& operator<<(std::ostream& lhs, const Date& rhs) {
 	return lhs << rhs.year << '-' << rhs.month << '-' << rhs.day;
