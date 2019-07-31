@@ -52,7 +52,8 @@ std::istream& operator>>(std::istream& lhs, Date& rhs) {
 }
 
 std::istream& operator>>(std::istream& lhs, Time& rhs) {
-	return lhs >> rhs.hours >> rhs.minutes;
+	char c_ignore; // or lhs.ignore(1)
+	return lhs >> rhs.hours >> c_ignore >> rhs.minutes;
 }
 
 
