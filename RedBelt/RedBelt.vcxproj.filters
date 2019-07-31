@@ -16,6 +16,9 @@
     <Filter Include="Исходные файлы\Week1">
       <UniqueIdentifier>{4434dedc-52fc-4ab0-ace8-fd27818402bb}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Файлы заголовков\Week1">
+      <UniqueIdentifier>{88812ab2-9c0b-462d-8db8-d194e7c9a8fc}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Week1.cpp">
@@ -27,5 +30,13 @@
     <ClCompile Include="Task_002.cpp">
       <Filter>Исходные файлы\Week1</Filter>
     </ClCompile>
+    <ClCompile Include="Task_003.cpp">
+      <Filter>Исходные файлы\Week1</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="airline_ticket.h">
+      <Filter>Файлы заголовков\Week1</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
