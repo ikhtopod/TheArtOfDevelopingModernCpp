@@ -124,10 +124,10 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="profiler.cpp" />
+    <ClCompile Include="profile.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="profiler.h" />
+    <ClInclude Include="profile.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
