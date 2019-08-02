@@ -1,7 +1,7 @@
 #pragma once
 
-#ifndef TEST_RUNNER_H
-#define TEST_RUNNER_H
+#ifndef COURSERAUNITTEST_TEST_RUNNER_H
+#define COURSERAUNITTEST_TEST_RUNNER_H
 
 #include <cstdlib>
 #include <functional>
@@ -150,4 +150,4 @@ public:
 #define RUN_TEST(tr, func) tr.RunTest(func, #func)
 
 
-#endif // !TEST_RUNNER_H
+#endif // !COURSERAUNITTEST_TEST_RUNNER_H
