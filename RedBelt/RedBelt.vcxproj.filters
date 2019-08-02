@@ -68,5 +68,8 @@
     <ClInclude Include="airline_ticket.h">
       <Filter>Файлы заголовков\Week1</Filter>
     </ClInclude>
+    <ClInclude Include="student.h">
+      <Filter>Файлы заголовков\Week2</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
