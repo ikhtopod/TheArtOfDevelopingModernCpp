@@ -125,9 +125,9 @@ public:
 	}
 };
 
-#define INSERT_PREFIX(counter) id ## counter
-#define MAKE_ID(counter) INSERT_PREFIX(counter)
-#define UNIQ_ID MAKE_ID(__COUNTER__)
+#define UNITTEST_CONCAT_ID(counter) __iuomschoid_assert_uniq_id ## counter
+#define UNITTEST_MAKE_ID(counter) UNITTEST_CONCAT_ID(counter)
+#define UNITTEST_UNIQ_ID UNITTEST_MAKE_ID(__COUNTER__)
 
 #define ASSERT_EQUAL_ID(uniq_id_name, x, y) {		\
 	std::ostringstream uniq_id_name {};				\
@@ -143,8 +143,8 @@ public:
 	Assert(x, uniq_id_name.str());					\
 }
 
-#define ASSERT_EQUAL(x, y) ASSERT_EQUAL_ID(UNIQ_ID, x, y) 
-#define ASSERT(x) ASSERT_ID(UNIQ_ID, x)
+#define ASSERT_EQUAL(x, y) ASSERT_EQUAL_ID(UNITTEST_UNIQ_ID, x, y) 
+#define ASSERT(x) ASSERT_ID(UNITTEST_UNIQ_ID, x)
 
 #define INIT_TEST_RUNNER TestRunner tr {}
 #define RUN_TEST(tr, func) tr.RunTest(func, #func)
