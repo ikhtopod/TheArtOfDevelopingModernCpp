@@ -138,8 +138,6 @@ public:
 	AssertEqual(x, y, uniq_id_name.str());			\
 }
 
-#define ASSERT_EQUAL(x, y) ASSERT_EQUAL_ID(UNIQ_ID, x, y) 
-
 #define ASSERT_ID(uniq_id_name, x) {				\
 	std::ostringstream uniq_id_name {};				\
 	uniq_id_name << '!' << #x << ", " <<			\
@@ -147,6 +145,7 @@ public:
 	Assert(x, uniq_id_name.str());					\
 }
 
+#define ASSERT_EQUAL(x, y) ASSERT_EQUAL_ID(UNIQ_ID, x, y) 
 #define ASSERT(x) ASSERT_ID(UNIQ_ID, x)
 
 #define INIT_TEST_RUNNER TestRunner tr {}
