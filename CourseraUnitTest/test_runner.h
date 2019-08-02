@@ -127,19 +127,27 @@ public:
 	}
 };
 
-#define ASSERT_EQUAL(x, y) {				\
-	std::ostringstream os {};				\
-	os << #x << " != " << #y << ", " <<		\
-		__FILE__ << ":" << __LINE__;		\
-	AssertEqual(x, y, os.str());			\
-} 
+#define INSERT_PREFIX(counter) id ## counter
+#define MAKE_ID(counter) INSERT_PREFIX(counter)
+#define UNIQ_ID MAKE_ID(__COUNTER__)
 
-#define ASSERT(x) {							\
-	std::ostringstream os {};				\
-	os << '!' << #x << ", " <<				\
-		__FILE__ << ":" << __LINE__;		\
-	Assert(x, os.str());			\
-} 
+#define ASSERT_EQUAL_ID(uniq_id_name, x, y) {		\
+	std::ostringstream uniq_id_name {};				\
+	uniq_id_name << #x << " != " << #y << ", " <<	\
+		__FILE__ << ":" << __LINE__;				\
+	AssertEqual(x, y, uniq_id_name.str());			\
+}
+
+#define ASSERT_EQUAL(x, y) ASSERT_EQUAL_ID(UNIQ_ID, x, y) 
+
+#define ASSERT_ID(uniq_id_name, x) {				\
+	std::ostringstream uniq_id_name {};				\
+	uniq_id_name << '!' << #x << ", " <<			\
+		__FILE__ << ":" << __LINE__;				\
+	Assert(x, uniq_id_name.str());					\
+}
+
+#define ASSERT(x) ASSERT_ID(UNIQ_ID, x)
 
 #define INIT_TEST_RUNNER TestRunner tr {}
 #define RUN_TEST(tr, func) tr.RunTest(func, #func)
