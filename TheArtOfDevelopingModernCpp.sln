@@ -14,8 +14,11 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "CourseraUnitTest", "Courser
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "RedBelt", "RedBelt\RedBelt.vcxproj", "{A59AAB11-D9B3-4A7A-A118-976978826E77}"
 	ProjectSection(ProjectDependencies) = postProject
+		{0150FD49-BC74-46DD-BF32-A59808CF4700} = {0150FD49-BC74-46DD-BF32-A59808CF4700}
 		{F7E81D5D-2AC2-432E-B594-BC4FC971FC64} = {F7E81D5D-2AC2-432E-B594-BC4FC971FC64}
 	EndProjectSection
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "CourseraProfiler", "CourseraProfiler\CourseraProfiler.vcxproj", "{0150FD49-BC74-46DD-BF32-A59808CF4700}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -57,6 +60,14 @@ Global
 		{A59AAB11-D9B3-4A7A-A118-976978826E77}.Release|x64.Build.0 = Release|x64
 		{A59AAB11-D9B3-4A7A-A118-976978826E77}.Release|x86.ActiveCfg = Release|Win32
 		{A59AAB11-D9B3-4A7A-A118-976978826E77}.Release|x86.Build.0 = Release|Win32
+		{0150FD49-BC74-46DD-BF32-A59808CF4700}.Debug|x64.ActiveCfg = Debug|x64
+		{0150FD49-BC74-46DD-BF32-A59808CF4700}.Debug|x64.Build.0 = Debug|x64
+		{0150FD49-BC74-46DD-BF32-A59808CF4700}.Debug|x86.ActiveCfg = Debug|Win32
+		{0150FD49-BC74-46DD-BF32-A59808CF4700}.Debug|x86.Build.0 = Debug|Win32
+		{0150FD49-BC74-46DD-BF32-A59808CF4700}.Release|x64.ActiveCfg = Release|x64
+		{0150FD49-BC74-46DD-BF32-A59808CF4700}.Release|x64.Build.0 = Release|x64
+		{0150FD49-BC74-46DD-BF32-A59808CF4700}.Release|x86.ActiveCfg = Release|Win32
+		{0150FD49-BC74-46DD-BF32-A59808CF4700}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
