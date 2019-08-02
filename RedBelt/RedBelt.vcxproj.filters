@@ -63,6 +63,9 @@
     <ClCompile Include="Task_010.cpp">
       <Filter>Исходные файлы\Week2</Filter>
     </ClCompile>
+    <ClCompile Include="Task_011.cpp">
+      <Filter>Исходные файлы\Week2</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="airline_ticket.h">
