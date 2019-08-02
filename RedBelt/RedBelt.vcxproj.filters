@@ -19,6 +19,12 @@
     <Filter Include="Файлы заголовков\Week1">
       <UniqueIdentifier>{88812ab2-9c0b-462d-8db8-d194e7c9a8fc}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Исходные файлы\Week2">
+      <UniqueIdentifier>{15c1fc61-4734-4f06-8a77-11056253b93c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Файлы заголовков\Week2">
+      <UniqueIdentifier>{fa731dcf-0d4d-4420-97f5-f3f7a8906762}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Week1.cpp">
@@ -50,6 +56,9 @@
     </ClCompile>
     <ClCompile Include="Task_009.cpp">
       <Filter>Исходные файлы\Week1</Filter>
+    </ClCompile>
+    <ClCompile Include="Week2.cpp">
+      <Filter>Исходные файлы\Week2</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
