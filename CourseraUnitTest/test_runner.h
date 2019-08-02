@@ -1,7 +1,7 @@
 #pragma once
 
-#ifndef RU_LIFANOFF_UTEST_TEST_RUNNER_H
-#define RU_LIFANOFF_UTEST_TEST_RUNNER_H
+#ifndef TEST_RUNNER_H
+#define TEST_RUNNER_H
 
 #include <cstdlib>
 #include <functional>
@@ -12,8 +12,6 @@
 #include <vector>
 #include <map>
 #include <set>
-
-namespace ru::lifanoff::utest {
 
 
 template <class Value>
@@ -151,6 +149,5 @@ public:
 #define INIT_TEST_RUNNER TestRunner tr {}
 #define RUN_TEST(tr, func) tr.RunTest(func, #func)
 
-}//! namespace ru::lifanoff::utest
 
-#endif // !RU_LIFANOFF_UTEST_TEST_RUNNER_H
+#endif // !TEST_RUNNER_H

@@ -1,7 +1,5 @@
 #include "test_runner.h"
 
-namespace ru::lifanoff::utest {
-
 void Assert(bool b, const std::string& hint) {
 	AssertEqual(b, true, hint);
 }
@@ -12,5 +10,3 @@ TestRunner::~TestRunner() {
 		exit(EXIT_FAILURE);
 	}
 }
-
-}//! namespace ru::lifanoff::utest
