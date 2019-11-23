@@ -8,7 +8,7 @@
 
 using namespace std;
 
-//Оптимизируйте эту функцию
+//РћРїС‚РёРјРёР·РёСЂСѓР№С‚Рµ СЌС‚Сѓ С„СѓРЅРєС†РёСЋ
 bool Compare(const Student& first, const Student& second) {
 	return first.Less(second);
 }

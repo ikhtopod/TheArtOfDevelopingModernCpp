@@ -27,23 +27,23 @@ TaskStatus GetNextTaskStatus(const TaskStatus& taskStatus) {
 	}
 }
 
-//Класс, позволяющий хранить статистику по статусам задач команды разработчиков.
+//РљР»Р°СЃСЃ, РїРѕР·РІРѕР»СЏСЋС‰РёР№ С…СЂР°РЅРёС‚СЊ СЃС‚Р°С‚РёСЃС‚РёРєСѓ РїРѕ СЃС‚Р°С‚СѓСЃР°Рј Р·Р°РґР°С‡ РєРѕРјР°РЅРґС‹ СЂР°Р·СЂР°Р±РѕС‚С‡РёРєРѕРІ.
 class TeamTasks {
 private:
 	std::map<std::string, TasksInfo> m_tasks {};
 
 public:
-	//Получить статистику по статусам задач конкретного разработчика
+	//РџРѕР»СѓС‡РёС‚СЊ СЃС‚Р°С‚РёСЃС‚РёРєСѓ РїРѕ СЃС‚Р°С‚СѓСЃР°Рј Р·Р°РґР°С‡ РєРѕРЅРєСЂРµС‚РЅРѕРіРѕ СЂР°Р·СЂР°Р±РѕС‚С‡РёРєР°
 	const TasksInfo& GetPersonTasksInfo(const std::string& person) const {
 		return m_tasks.at(person);
 	}
 
-	// Добавить новую задачу (в статусе NEW) для конкретного разработчитка
+	// Р”РѕР±Р°РІРёС‚СЊ РЅРѕРІСѓСЋ Р·Р°РґР°С‡Сѓ (РІ СЃС‚Р°С‚СѓСЃРµ NEW) РґР»СЏ РєРѕРЅРєСЂРµС‚РЅРѕРіРѕ СЂР°Р·СЂР°Р±РѕС‚С‡РёС‚РєР°
 	void AddNewTask(const std::string& person) {
 		m_tasks[person][TaskStatus::NEW]++;
 	}
 
-	// Обновить статусы по данному количеству задач конкретного разработчика
+	// РћР±РЅРѕРІРёС‚СЊ СЃС‚Р°С‚СѓСЃС‹ РїРѕ РґР°РЅРЅРѕРјСѓ РєРѕР»РёС‡РµСЃС‚РІСѓ Р·Р°РґР°С‡ РєРѕРЅРєСЂРµС‚РЅРѕРіРѕ СЂР°Р·СЂР°Р±РѕС‚С‡РёРєР°
 	std::tuple<TasksInfo, TasksInfo> PerformPersonTasks(const std::string& person, int task_count) {
 		TasksInfo changeable, updatedTasks, untouchedTasks;
 

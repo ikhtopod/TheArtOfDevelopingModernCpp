@@ -11,8 +11,8 @@ private:
 	static const int MAX_USER_COUNT = 100'000;
 
 	vector<int> m_userPageCounts;
-	vector<int> m_sortedUsers;   // отсортированы по убыванию количества страниц
-	vector<int> m_userPositions; // позиции в векторе sorted_users_
+	vector<int> m_sortedUsers;   // РѕС‚СЃРѕСЂС‚РёСЂРѕРІР°РЅС‹ РїРѕ СѓР±С‹РІР°РЅРёСЋ РєРѕР»РёС‡РµСЃС‚РІР° СЃС‚СЂР°РЅРёС†
+	vector<int> m_userPositions; // РїРѕР·РёС†РёРё РІ РІРµРєС‚РѕСЂРµ sorted_users_
 
 private:
 	int GetUserCount() const {

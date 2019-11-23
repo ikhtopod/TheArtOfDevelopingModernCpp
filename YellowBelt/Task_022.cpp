@@ -11,9 +11,9 @@ enum class Gender {
 };
 
 struct Person {
-	int age;  // возраст
-	Gender gender;  // пол
-	bool is_employed;  // имеет ли работу
+	int age;  // РІРѕР·СЂР°СЃС‚
+	Gender gender;  // РїРѕР»
+	bool is_employed;  // РёРјРµРµС‚ Р»Рё СЂР°Р±РѕС‚Сѓ
 };
 
 template <typename InputIt>

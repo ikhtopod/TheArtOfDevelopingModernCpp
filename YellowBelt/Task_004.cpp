@@ -27,11 +27,11 @@ bool operator<(const Region& lhs, const Region& rhs) {
 }
 
 int FindMaxRepetitionCount(const std::vector<Region>& regions) {
-	std::map<Region, int> match—ounter {};
+	std::map<Region, int> match–°ounter {};
 
 	int maxValue = 0;
 	for (const auto& region : regions) {
-		maxValue = std::max(maxValue, ++match—ounter[region]);
+		maxValue = std::max(maxValue, ++match–°ounter[region]);
 	}//rof
 
 	return maxValue;

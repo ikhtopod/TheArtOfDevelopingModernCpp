@@ -4,17 +4,17 @@
 #include <string>
 
 std::string AskTimeServer() {
-	/* Для тестирования повставляйте сюда код, реализующий различное поведение этой функии: */
+	/* Р”Р»СЏ С‚РµСЃС‚РёСЂРѕРІР°РЅРёСЏ РїРѕРІСЃС‚Р°РІР»СЏР№С‚Рµ СЃСЋРґР° РєРѕРґ, СЂРµР°Р»РёР·СѓСЋС‰РёР№ СЂР°Р·Р»РёС‡РЅРѕРµ РїРѕРІРµРґРµРЅРёРµ СЌС‚РѕР№ С„СѓРЅРєРёРё: */
 
-	// нормальный возврат строкового значения
+	// РЅРѕСЂРјР°Р»СЊРЅС‹Р№ РІРѕР·РІСЂР°С‚ СЃС‚СЂРѕРєРѕРІРѕРіРѕ Р·РЅР°С‡РµРЅРёСЏ
 	return std::string { "12:33:21" };
 	// return std::string { "15:17:25" };
 
-	// выброс исключения system_error
+	// РІС‹Р±СЂРѕСЃ РёСЃРєР»СЋС‡РµРЅРёСЏ system_error
 	// throw std::system_error(std::error_code());
 	// throw std::system_error(std::error_code(), "throw system error test");
 
-	// выброс другого исключения с сообщением
+	// РІС‹Р±СЂРѕСЃ РґСЂСѓРіРѕРіРѕ РёСЃРєР»СЋС‡РµРЅРёСЏ СЃ СЃРѕРѕР±С‰РµРЅРёРµРј
 	// throw std::exception("throw exception test");
 	// throw std::domain_error("throw domain error test");
 	// throw std::invalid_argument("throw invalid argument test");

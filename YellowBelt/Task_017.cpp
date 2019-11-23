@@ -22,7 +22,7 @@ int main() {
 
 	PrintVectorPart({ 6, 1, 8, -5, 4 });
 	cout << endl;
-	PrintVectorPart({ -6, 1, 8, -5, 4 });  // íè÷åãî íå âûâåäåòñÿ
+	PrintVectorPart({ -6, 1, 8, -5, 4 });  // Ð½Ð¸Ñ‡ÐµÐ³Ð¾ Ð½Ðµ Ð²Ñ‹Ð²ÐµÐ´ÐµÑ‚ÑÑ
 	cout << endl;
 	PrintVectorPart({ 6, 1, 8, 5, 4 });
 	cout << endl;

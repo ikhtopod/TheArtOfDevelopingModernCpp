@@ -49,7 +49,7 @@ std::map<Key, Value> Sqr(const std::map<Key, Value>& x) {
 }
 
 /**
-	Код должен вывести:
+	РљРѕРґ РґРѕР»Р¶РµРЅ РІС‹РІРµСЃС‚Рё:
 	\code
 		vector: 1 4 9
 		map of pairs:

@@ -22,7 +22,7 @@ int main() {
 		}//rof
 
 		if (busRoutes.find(stops) == std::cend(busRoutes)) {
-			// маршрута нет, надо добавить
+			// РјР°СЂС€СЂСѓС‚Р° РЅРµС‚, РЅР°РґРѕ РґРѕР±Р°РІРёС‚СЊ
 			int newBus = busRoutes.size() + 1;
 			busRoutes[stops] = newBus;
 			std::cout << "New bus " << newBus << std::endl;

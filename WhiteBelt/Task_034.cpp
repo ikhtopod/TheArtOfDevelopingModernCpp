@@ -84,21 +84,21 @@ std::string Person::NamesToString(const std::vector<std::string>& v) {
 }
 
 
-// добавить факт изменения имени на first_name в год year
+// РґРѕР±Р°РІРёС‚СЊ С„Р°РєС‚ РёР·РјРµРЅРµРЅРёСЏ РёРјРµРЅРё РЅР° first_name РІ РіРѕРґ year
 void Person::ChangeFirstName(int year, const std::string& first_name) {
 	if (year < m_birthYear) return;
 
 	m_firstnames[year] = first_name;
 }
 
-// добавить факт изменения фамилии на last_name в год year
+// РґРѕР±Р°РІРёС‚СЊ С„Р°РєС‚ РёР·РјРµРЅРµРЅРёСЏ С„Р°РјРёР»РёРё РЅР° last_name РІ РіРѕРґ year
 void Person::ChangeLastName(int year, const std::string& last_name) {
 	if (year < m_birthYear) return;
 
 	m_lastnames[year] = last_name;
 }
 
-// получить имя и фамилию по состоянию на конец года year
+// РїРѕР»СѓС‡РёС‚СЊ РёРјСЏ Рё С„Р°РјРёР»РёСЋ РїРѕ СЃРѕСЃС‚РѕСЏРЅРёСЋ РЅР° РєРѕРЅРµС† РіРѕРґР° year
 std::string Person::GetFullName(int year) const {
 	if (year < m_birthYear) return "No person";
 
@@ -118,7 +118,7 @@ std::string Person::GetFullName(int year) const {
 	return result;
 }
 
-// получить все имена и фамилии по состоянию на конец года year
+// РїРѕР»СѓС‡РёС‚СЊ РІСЃРµ РёРјРµРЅР° Рё С„Р°РјРёР»РёРё РїРѕ СЃРѕСЃС‚РѕСЏРЅРёСЋ РЅР° РєРѕРЅРµС† РіРѕРґР° year
 std::string Person::GetFullNameWithHistory(int year) const {
 	if (year < m_birthYear) return "No person";
 

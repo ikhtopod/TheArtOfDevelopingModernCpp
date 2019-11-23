@@ -168,17 +168,17 @@ private:
 	}
 
 public:
-	// добавить факт изменения имени на first_name в год year
+	// РґРѕР±Р°РІРёС‚СЊ С„Р°РєС‚ РёР·РјРµРЅРµРЅРёСЏ РёРјРµРЅРё РЅР° first_name РІ РіРѕРґ year
 	void ChangeFirstName(int year, const std::string& first_name) {
 		m_firstname[year] = first_name;
 	}
 
-	// добавить факт изменения фамилии на last_name в год year
+	// РґРѕР±Р°РІРёС‚СЊ С„Р°РєС‚ РёР·РјРµРЅРµРЅРёСЏ С„Р°РјРёР»РёРё РЅР° last_name РІ РіРѕРґ year
 	void ChangeLastName(int year, const std::string& last_name) {
 		m_lastname[year] = last_name;
 	}
 
-	// получить имя и фамилию по состоянию на конец года year
+	// РїРѕР»СѓС‡РёС‚СЊ РёРјСЏ Рё С„Р°РјРёР»РёСЋ РїРѕ СЃРѕСЃС‚РѕСЏРЅРёСЋ РЅР° РєРѕРЅРµС† РіРѕРґР° year
 	std::string GetFullName(int year) {
 		std::string result { "Incognito" };
 
